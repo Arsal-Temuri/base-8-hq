@@ -1,73 +1,114 @@
-# Welcome to your Lovable project
+# BASE8 Command Center
 
-## Project info
+Marketing and operations command-center style website built with Vite, React, TypeScript, Tailwind, and shadcn/Radix UI components.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Current Status
 
-## How can I edit this code?
+- SPA architecture on Vite + React Router
+- Supabase fully removed
+- Form submissions routed through Formspree endpoints
+- Lint, test, and production build scripts available
+- Ready for Vercel deployment
 
-There are several ways of editing your application.
+## Tech Stack
 
-**Use Lovable**
+- Vite 5
+- React 18
+- TypeScript 5
+- React Router 6
+- Tailwind CSS + tailwindcss-animate
+- shadcn/Radix UI primitives
+- react-hook-form + zod validation
+- framer-motion animations
+- Vitest + Testing Library
+- Playwright (E2E support)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## App Routes
 
-Changes made via Lovable will be committed automatically to this repo.
+- `/` home
+- `/operational-units`
+- `/mission-archive`
+- `/headquarters`
+- `/strike-team`
+- `/deploy-mission`
+- `/contact`
 
-**Use your preferred IDE**
+## Form Integration
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+The app currently uses Formspree for both public forms:
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- Contact form -> `VITE_CONTACT_FORM_URL`
+- Deploy Mission form -> `VITE_DEPLOY_FORM_URL`
 
-Follow these steps:
+Both forms submit JSON via `fetch` and preserve existing validation, loading, and success-state UX.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## Environment Variables
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Create a local `.env` file in the project root:
 
-# Step 3: Install the necessary dependencies.
-npm i
+```env
+VITE_CONTACT_FORM_URL=https://formspree.io/f/your_contact_form_id
+VITE_DEPLOY_FORM_URL=https://formspree.io/f/your_deploy_form_id
+```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+Important:
+
+- `.env` is gitignored
+- Use real Formspree endpoints in local, preview, and production environments
+- In Vercel, add these variables to Project Settings -> Environment Variables
+
+## Local Development
+
+Requirements:
+
+- Node.js 18+ (recommended)
+- npm 9+
+
+Install and run:
+
+```bash
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Default dev URL:
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- `http://localhost:5173`
 
-**Use GitHub Codespaces**
+## Available Scripts
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- `npm run dev` start Vite dev server
+- `npm run build` build production bundle
+- `npm run build:dev` build in development mode
+- `npm run preview` preview production build locally
+- `npm run lint` run ESLint
+- `npm run test` run Vitest once
+- `npm run test:watch` run Vitest in watch mode
 
-## What technologies are used for this project?
+## Deployment (Vercel)
 
-This project is built with:
+1. Import this repository into Vercel.
+2. Framework preset: Vite.
+3. Build command: `npm run build`.
+4. Output directory: `dist`.
+5. Add environment variables:
+	 - `VITE_CONTACT_FORM_URL`
+	 - `VITE_DEPLOY_FORM_URL`
+6. Deploy and run a smoke test on both forms.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Project Structure
 
-## How can I deploy this project?
+```text
+src/
+	components/      reusable UI and section components
+	hooks/           shared hooks
+	lib/             utilities and helpers
+	pages/           route-level pages
+	test/            test setup and test files
+```
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+## Notes
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+- This project is no longer using Supabase.
+- If a form returns non-2xx, the UI remains on the form and logs an error in the console.
+- Keep Formspree spam protection and allowed-origin settings configured in Formspree dashboard.
