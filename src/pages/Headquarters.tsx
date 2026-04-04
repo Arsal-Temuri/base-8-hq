@@ -14,7 +14,7 @@ const fadeIn = {
 const values = [
   { title: "Mission", text: "To transform brands into dominant forces through the fusion of creative excellence and strategic precision." },
   { title: "Vision", text: "To be the world's most formidable creative command center—where every brand we touch becomes unstoppable." },
-  { title: "Operational Philosophy", text: "We operate with military-grade discipline and creative fearlessness. Every project is a mission, every client is a partner, and every outcome is a victory." },
+  { title: "Operational Philosophy", text: "We operate with discipline and creative fearlessness. Every project is a mission, every client is a partner, and every outcome is a victory." },
 ];
 
 const Headquarters = () => (
@@ -27,10 +27,10 @@ const Headquarters = () => (
           <motion.div {...fadeIn}>
             <h3 className="font-heading text-lg font-bold text-foreground mb-4">About BASE8HQ</h3>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              BASE8HQ was founded on the principle that branding is warfare. In today's hyper-competitive landscape, only the most strategically designed brands survive and thrive.
+              BASE 8 HEADQUARTERS was founded with the objective of building a focused creative studio capable of delivering strategic media and marketing solutions.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              We built a command center that brings together the sharpest creative minds, the most advanced tools, and battle-tested strategies to give our clients an unfair advantage.
+              The headquarters operates through a structured system where each operator contributes specialized expertise. This approach allows BASE8HQ to remain efficient, adaptable, and results-oriented.
             </p>
           </motion.div>
           <motion.div {...fadeIn} className="card-glass rounded-sm overflow-hidden">

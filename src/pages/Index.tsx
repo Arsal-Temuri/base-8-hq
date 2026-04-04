@@ -22,14 +22,54 @@ import teamDesigner from "@/assets/team-designer.jpg";
 import teamMarketing from "@/assets/team-marketing.jpg";
 
 const services = [
-  { icon: Shield, title: "Brand & Identity Unit", description: "Forge unbreakable brand identities that command authority and recognition across all battlefields." },
-  { icon: Palette, title: "Visual Design Unit", description: "Craft striking visual systems that dominate attention and leave lasting impressions." },
-  { icon: Video, title: "Video Production Unit", description: "Produce cinematic content that captures missions and amplifies your message." },
-  { icon: Megaphone, title: "Digital Marketing Unit", description: "Deploy precision-targeted campaigns that reach and convert your ideal operatives." },
-  { icon: Globe, title: "Web Development Unit", description: "Build digital command centers with cutting-edge technology and seamless performance." },
-  { icon: PenTool, title: "Content Creation Unit", description: "Generate strategic content that engages, informs, and drives action." },
-  { icon: Compass, title: "Strategy & Consulting Unit", description: "Chart the course for brand domination with data-driven strategic intelligence." },
-  { icon: Eye, title: "Visualization & Design Unit", description: "Transform complex data into compelling visual narratives that inform decisions." },
+  {
+    icon: Shield,
+    title: "Brand & Identity Unit",
+    description:
+      "We craft complete identity systems through logo design, brand architecture, brand guidelines, and visual identity development.",
+  },
+  {
+    icon: Palette,
+    title: "Visual Design Unit",
+    description:
+      "Our visual team delivers graphic design, marketing collateral, digital creative assets, and social media design that stays on-brand.",
+  },
+  {
+    icon: Video,
+    title: "Video Production Unit",
+    description:
+      "From edit to final output, we produce brand videos, short form content, and commercial content with a clear strategic purpose.",
+  },
+  {
+    icon: Megaphone,
+    title: "Digital Marketing Unit",
+    description:
+      "We run social media strategy, content planning, campaign strategy, and marketing consulting to turn reach into measurable growth.",
+  },
+  {
+    icon: Globe,
+    title: "Web Development Unit",
+    description:
+      "This unit builds websites, shapes UI/UX, sets up Shopify stores, and optimizes web performance for business outcomes.",
+  },
+  {
+    icon: PenTool,
+    title: "Content Creation Unit",
+    description:
+      "We handle scriptwriting, content concepts, short form content, and creative direction to keep messaging sharp across channels.",
+  },
+  {
+    icon: Compass,
+    title: "Strategy & Consulting Unit",
+    description:
+      "We define brand positioning and lead creative, content, and marketing planning so every initiative follows a clear direction.",
+  },
+  {
+    icon: Eye,
+    title: "Visualization & Design Unit",
+    description:
+      "We provide 3D modeling, 3D design, architectural and interior visualization, plus CAD design for high-fidelity presentation.",
+  },
 ];
 
 const projects = [
@@ -108,10 +148,10 @@ const Index = () => {
                 Command Center for Brand Domination
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                BASE8HQ is not your average agency. We are a high-performance creative command center built for brands that refuse to blend in. Our operational units combine strategy, design, and technology to create unstoppable brand forces.
+                BASE8HQ is not your average agency. We are a high-performance creative command center built for brands that refuse to blend in. Our structure allows us to remain agile while delivering high quality solutions across branding, media production, marketing strategy, and digital development. 
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                From identity forging to digital warfare, every mission we deploy is precision-engineered for maximum impact.
+                Every project begins with understanding the mission and ends with deploying the right creative solution.
               </p>
             </motion.div>
             <motion.div
@@ -132,7 +172,7 @@ const Index = () => {
       {/* OPERATIONAL UNITS */}
       <section className="py-20 lg:py-28">
         <div className="container mx-auto px-4">
-          <SectionHeader tag="Units" title="Operational Units" subtitle="Specialized divisions engineered for every aspect of brand warfare." />
+          <SectionHeader tag="Units" title="Operational Units" subtitle="Specialized divisions engineered for every aspect of Media and Marketing" />
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {services.map((s, i) => (
               <ServiceCard key={s.title} {...s} index={i} />
@@ -149,7 +189,7 @@ const Index = () => {
       {/* MISSION ARCHIVE */}
       <section className="py-20 lg:py-28">
         <div className="container mx-auto px-4">
-          <SectionHeader tag="Archive" title="Mission Archive" subtitle="Completed operations that redefined the battlefield." />
+          <SectionHeader tag="Archive" title="Mission Archive" subtitle="Completed operations that redefined the market." />
           <div className="grid sm:grid-cols-2 gap-4">
             {projects.map((p, i) => (
               <ProjectCard key={p.name} {...p} index={i} />
@@ -164,7 +204,7 @@ const Index = () => {
       <section className="py-20 lg:py-28">
         <div className="container mx-auto px-4">
           <SectionHeader tag="Team" title="Strike Team" subtitle="The elite operatives behind every successful mission." />
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {team.map((t, i) => (
               <TeamCard key={t.name} {...t} index={i} />
             ))}

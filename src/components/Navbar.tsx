@@ -37,13 +37,14 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 lg:px-8 flex items-center justify-between h-16 lg:h-20">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2">
-          <span className="font-heading text-lg lg:text-xl font-bold tracking-wider text-primary">
-            BASE8
-          </span>
-          <span className="font-heading text-lg lg:text-xl font-bold tracking-wider text-foreground">
-            HQ
-          </span>
+        <Link to="/" aria-label="BASE8HQ Home" className="flex items-center">
+          <div className="h-11 lg:h-14 w-44 lg:w-56 overflow-hidden">
+            <img
+              src="/LOGO%20BASE%208%20HQ.png"
+              alt="BASE8HQ"
+              className="h-full w-full object-cover object-[center_46%]"
+            />
+          </div>
         </Link>
 
         {/* Desktop Nav */}
