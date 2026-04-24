@@ -45,10 +45,10 @@ const StrikeTeam = () => (
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="card-glass rounded-sm p-6 text-center"
             >
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full border border-primary/30 flex items-center justify-center text-primary font-heading text-xl">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full border border-primary/30 flex items-center justify-center text-primary font-heading font-semibold text-xl">
                 ?
               </div>
-              <p className="font-heading text-[0.65rem] tracking-wider text-muted-foreground">{s}</p>
+              <p className="font-heading font-semibold text-[0.73rem] tracking-wider text-muted-foreground">{s}</p>
             </motion.div>
           ))}
         </div>

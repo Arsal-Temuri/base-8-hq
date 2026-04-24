@@ -12,10 +12,18 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 
+const phoneRegex = /^\+?[\d().\s-]{7,20}$/;
+
 // 1. Define the Zod schema for validation
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   email: z.string().email({ message: "Please enter a valid email address." }),
+  phone: z
+    .string()
+    .trim()
+    .min(7, { message: "Phone number must be at least 7 characters." })
+    .max(20, { message: "Phone number must be 20 characters or fewer." })
+    .regex(phoneRegex, { message: "Please enter a valid phone number." }),
   message: z.string().min(10, { message: "Message must be at least 10 characters." }),
 });
 
@@ -32,6 +40,7 @@ const Contact = () => {
     defaultValues: {
       name: "",
       email: "",
+      phone: "",
       message: "",
     },
   });
@@ -149,6 +158,24 @@ const Contact = () => {
                             <Input
                               {...field}
                               type="email"
+                              className="w-full bg-background border border-primary/20 rounded-sm px-4 py-3 text-sm text-foreground focus:border-primary/60 focus:outline-none transition-colors"
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="phone"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="font-heading text-[0.65rem] tracking-widest text-muted-foreground">Phone Number</FormLabel>
+                          <FormControl>
+                            <Input
+                              {...field}
+                              type="tel"
+                              placeholder="+1 (555) 123-4567"
                               className="w-full bg-background border border-primary/20 rounded-sm px-4 py-3 text-sm text-foreground focus:border-primary/60 focus:outline-none transition-colors"
                             />
                           </FormControl>

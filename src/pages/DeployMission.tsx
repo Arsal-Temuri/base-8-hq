@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,19 +9,66 @@ import SectionHeader from "@/components/SectionHeader";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Slider } from "@/components/ui/slider";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 
+const COUNTRY_OPTIONS = ["Pakistan", "United States", "UK", "Australia", "Europe"] as const;
+
+type CountryOption = (typeof COUNTRY_OPTIONS)[number];
+
+const COUNTRY_CURRENCY_MAP: Record<CountryOption, { code: string; locale: string }> = {
+  Pakistan: { code: "PKR", locale: "en-PK" },
+  "United States": { code: "USD", locale: "en-US" },
+  UK: { code: "GBP", locale: "en-GB" },
+  Australia: { code: "AUD", locale: "en-AU" },
+  Europe: { code: "EUR", locale: "en-IE" },
+};
+
+const COUNTRY_BUDGET_MAP: Record<CountryOption, { max: number; step: number; rangeLabel: string }> = {
+  Pakistan: { max: 1000000, step: 10000, rangeLabel: "0 - 10 Lac" },
+  "United States": { max: 50000, step: 5000, rangeLabel: "0 - 50,000" },
+  UK: { max: 50000, step: 5000, rangeLabel: "0 - 50,000" },
+  Australia: { max: 50000, step: 5000, rangeLabel: "0 - 50,000" },
+  Europe: { max: 50000, step: 5000, rangeLabel: "0 - 50,000" },
+};
+
+const formatBudget = (value: number, country: CountryOption) => {
+  const currency = COUNTRY_CURRENCY_MAP[country];
+  return new Intl.NumberFormat(currency.locale, {
+    style: "currency",
+    currency: currency.code,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(value);
+};
+
 // 1. Define the Zod schema for validation
-const formSchema = z.object({
-  name: z.string().min(2, { message: "Operative name must be at least 2 characters." }),
-  company: z.string().min(2, { message: "Company name must be at least 2 characters." }),
-  email: z.string().email({ message: "Please enter a valid email address." }),
-  project_type: z.string().min(1, { message: "Please select a mission type." }),
-  budget: z.string().optional(),
-  timeline: z.string().optional(),
-  description: z.string().min(20, { message: "Brief must be at least 20 characters." }),
-});
+const formSchema = z
+  .object({
+    name: z.string().min(2, { message: "Operative name must be at least 2 characters." }),
+    company: z.string().min(2, { message: "Company name must be at least 2 characters." }),
+    email: z.string().email({ message: "Please enter a valid email address." }),
+    country: z.enum(COUNTRY_OPTIONS, { required_error: "Please select your country." }),
+    project_type: z.string().min(1, { message: "Please select a mission type." }),
+    budget: z
+      .number({ required_error: "Please set your budget range." })
+      .min(0, { message: "Budget cannot be below 0." })
+      .max(1000000, { message: "Budget cannot exceed 1,000,000." }),
+    timeline: z.string().optional(),
+    description: z.string().min(20, { message: "Brief must be at least 20 characters." }),
+  })
+  .superRefine((data, context) => {
+    const budgetRules = COUNTRY_BUDGET_MAP[data.country];
+
+    if (data.budget > budgetRules.max) {
+      context.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["budget"],
+        message: `Budget cannot exceed ${budgetRules.max.toLocaleString()} for ${data.country}.`,
+      });
+    }
+  });
 
 type DeployFormData = z.infer<typeof formSchema>;
 
@@ -37,21 +84,37 @@ const DeployMission = () => {
       name: "",
       company: "",
       email: "",
+      country: "Pakistan",
       project_type: "",
-      budget: "",
+      budget: 0,
       timeline: "",
       description: "",
     },
   });
 
+  const selectedCountry = form.watch("country");
+  const selectedBudgetRules = COUNTRY_BUDGET_MAP[selectedCountry];
+
+  useEffect(() => {
+    const currentBudget = form.getValues("budget");
+    if (currentBudget > selectedBudgetRules.max) {
+      form.setValue("budget", selectedBudgetRules.max, { shouldValidate: true });
+    }
+  }, [form, selectedBudgetRules.max]);
+
   // 3. Handle form submission with validated data
   const onSubmit = async (data: DeployFormData) => {
     setIsSubmitting(true);
     try {
+      const payload = {
+        ...data,
+        budget_currency: COUNTRY_CURRENCY_MAP[data.country].code,
+      };
+
       const response = await fetch(import.meta.env.VITE_DEPLOY_FORM_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify(payload),
       });
       if (!response.ok) throw new Error("Submission failed");
       setSubmitted(true);
@@ -135,6 +198,29 @@ const DeployMission = () => {
 
                   <FormField
                     control={form.control}
+                    name="country"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="font-heading text-[0.65rem] tracking-widest text-muted-foreground">Country</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger className="w-full bg-background border border-primary/20 rounded-sm px-4 py-3 text-sm text-foreground focus:border-primary/60 focus:outline-none transition-colors">
+                              <SelectValue placeholder="Select country" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            {COUNTRY_OPTIONS.map((country) => (
+                              <SelectItem key={country} value={country}>{country}</SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
                     name="project_type"
                     render={({ field }) => (
                       <FormItem>
@@ -162,29 +248,6 @@ const DeployMission = () => {
                   <div className="grid sm:grid-cols-2 gap-5">
                     <FormField
                       control={form.control}
-                      name="budget"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="font-heading text-[0.65rem] tracking-widest text-muted-foreground">Budget Range</FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                              <SelectTrigger className="w-full bg-background border border-primary/20 rounded-sm px-4 py-3 text-sm text-foreground focus:border-primary/60 focus:outline-none transition-colors">
-                                <SelectValue placeholder="Select range" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              <SelectItem value="$5K - $10K">$5K - $10K</SelectItem>
-                              <SelectItem value="$10K - $25K">$10K - $25K</SelectItem>
-                              <SelectItem value="$25K - $50K">$25K - $50K</SelectItem>
-                              <SelectItem value="$50K+">$50K+</SelectItem>
-                            </SelectContent>
-                          </Select>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                    <FormField
-                      control={form.control}
                       name="timeline"
                       render={({ field }) => (
                         <FormItem>
@@ -202,6 +265,36 @@ const DeployMission = () => {
                               <SelectItem value="Ongoing">Ongoing</SelectItem>
                             </SelectContent>
                           </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="budget"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="font-heading text-[0.65rem] tracking-widest text-muted-foreground">
+                            Budget Range ({selectedBudgetRules.rangeLabel})
+                          </FormLabel>
+                          <FormControl>
+                            <div className="space-y-3 pt-2">
+                              <Slider
+                                min={0}
+                                max={selectedBudgetRules.max}
+                                step={selectedBudgetRules.step}
+                                value={[field.value ?? 0]}
+                                onValueChange={(value) => field.onChange(value[0] ?? 0)}
+                              />
+                              <div className="flex items-center justify-between text-xs text-muted-foreground">
+                                <span>{formatBudget(0, selectedCountry)}</span>
+                                <span>{formatBudget(selectedBudgetRules.max, selectedCountry)}</span>
+                              </div>
+                              <p className="font-heading text-[0.62rem] tracking-[0.15em] text-primary">
+                                Selected: {formatBudget(field.value ?? 0, selectedCountry)}
+                              </p>
+                            </div>
+                          </FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
