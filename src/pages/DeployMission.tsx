@@ -43,12 +43,20 @@ const formatBudget = (value: number, country: CountryOption) => {
   }).format(value);
 };
 
+const phoneRegex = /^\+?[\d().\s-]{7,20}$/;
+
 // 1. Define the Zod schema for validation
 const formSchema = z
   .object({
     name: z.string().min(2, { message: "Operative name must be at least 2 characters." }),
     company: z.string().min(2, { message: "Company name must be at least 2 characters." }),
     email: z.string().email({ message: "Please enter a valid email address." }),
+    phone: z
+      .string()
+      .trim()
+      .min(7, { message: "Phone number must be at least 7 characters." })
+      .max(20, { message: "Phone number must be 20 characters or fewer." })
+      .regex(phoneRegex, { message: "Please enter a valid phone number." }),
     country: z.enum(COUNTRY_OPTIONS, { required_error: "Please select your country." }),
     project_type: z.string().min(1, { message: "Please select a mission type." }),
     budget: z
@@ -56,6 +64,7 @@ const formSchema = z
       .min(0, { message: "Budget cannot be below 0." })
       .max(1000000, { message: "Budget cannot exceed 1,000,000." }),
     timeline: z.string().optional(),
+    custom_timeline: z.string().optional(),
     description: z.string().min(20, { message: "Brief must be at least 20 characters." }),
   })
   .superRefine((data, context) => {
@@ -68,6 +77,16 @@ const formSchema = z
         message: `Budget cannot exceed ${budgetRules.max.toLocaleString()} for ${data.country}.`,
       });
     }
+    // If timeline is Custom, require custom_timeline
+    if (data.timeline === "Custom") {
+      if (!data.custom_timeline || data.custom_timeline.trim().length === 0) {
+        context.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ["custom_timeline"],
+          message: "Please provide a custom timeline.",
+        });
+      }
+    }
   });
 
 type DeployFormData = z.infer<typeof formSchema>;
@@ -76,6 +95,7 @@ const DeployMission = () => {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  
 
   // 2. Set up React Hook Form with the Zod schema
   const form = useForm<DeployFormData>({
@@ -84,16 +104,19 @@ const DeployMission = () => {
       name: "",
       company: "",
       email: "",
+      phone: "",
       country: "Pakistan",
       project_type: "",
       budget: 0,
       timeline: "",
+      custom_timeline: "",
       description: "",
     },
   });
 
   const selectedCountry = form.watch("country");
   const selectedBudgetRules = COUNTRY_BUDGET_MAP[selectedCountry];
+  const selectedTimeline = form.watch("timeline");
 
   useEffect(() => {
     const currentBudget = form.getValues("budget");
@@ -105,10 +128,13 @@ const DeployMission = () => {
   // 3. Handle form submission with validated data
   const onSubmit = async (data: DeployFormData) => {
     setIsSubmitting(true);
+    setSubmitError(null);
     try {
+      const { custom_timeline, ...rest } = data;
       const payload = {
-        ...data,
+        ...rest,
         budget_currency: COUNTRY_CURRENCY_MAP[data.country].code,
+        timeline: data.timeline === "Custom" ? custom_timeline : data.timeline,
       };
 
       const response = await fetch(import.meta.env.VITE_DEPLOY_FORM_URL, {
@@ -120,6 +146,7 @@ const DeployMission = () => {
       setSubmitted(true);
     } catch (error) {
       console.error("Deploy mission form error:", error);
+      setSubmitError((error as Error)?.message ?? "Submission failed");
     } finally {
       setIsSubmitting(false);
     }
@@ -195,6 +222,24 @@ const DeployMission = () => {
                       </FormItem>
                     )}
                   />
+                  <FormField
+                    control={form.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="font-heading text-[0.65rem] tracking-widest text-muted-foreground">Phone Number</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            type="tel"
+                            placeholder="+1 (555) 123-4567"
+                            className="w-full bg-background border border-primary/20 rounded-sm px-4 py-3 text-sm text-foreground focus:border-primary/60 focus:outline-none transition-colors"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
                   <FormField
                     control={form.control}
@@ -252,7 +297,15 @@ const DeployMission = () => {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel className="font-heading text-[0.65rem] tracking-widest text-muted-foreground">Timeline</FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <Select
+                            onValueChange={(v) => {
+                              field.onChange(v);
+                              if (v !== "Custom") {
+                                form.setValue("custom_timeline", "", { shouldValidate: true });
+                              }
+                            }}
+                            defaultValue={field.value}
+                          >
                             <FormControl>
                               <SelectTrigger className="w-full bg-background border border-primary/20 rounded-sm px-4 py-3 text-sm text-foreground focus:border-primary/60 focus:outline-none transition-colors">
                                 <SelectValue placeholder="Select timeline" />
@@ -263,8 +316,27 @@ const DeployMission = () => {
                               <SelectItem value="1 Month">1 Month</SelectItem>
                               <SelectItem value="2 - 3 Months">2 - 3 Months</SelectItem>
                               <SelectItem value="Ongoing">Ongoing</SelectItem>
+                              <SelectItem value="Custom">Custom timeline</SelectItem>
                             </SelectContent>
                           </Select>
+                          {selectedTimeline === "Custom" && (
+                            <FormField
+                              control={form.control}
+                              name="custom_timeline"
+                              render={({ field: customField }) => (
+                                <FormItem className="pt-3">
+                                  <FormControl>
+                                    <Input
+                                      {...customField}
+                                      placeholder="Enter custom timeline (e.g., 6 weeks)"
+                                      className="w-full bg-background border border-primary/20 rounded-sm px-4 py-3 text-sm text-foreground focus:border-primary/60 focus:outline-none transition-colors"
+                                    />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                          )}
                           <FormMessage />
                         </FormItem>
                       )}

@@ -31,7 +31,6 @@ const Footer = () => {
             <div className="flex flex-col gap-2 text-sm text-muted-foreground">
               <span>ops@base8hq.com</span>
               <span>+1 (555) 808-BASE</span>
-              <span>HQ District, Innovation Tower, Floor 8</span>
             </div>
           </div>
 

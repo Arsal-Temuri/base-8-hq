@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -16,9 +16,21 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const mobileToggleRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
+    let ticking = false;
+    const onScroll = () => {
+      const next = window.scrollY > 50;
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(() => {
+          setScrolled(next);
+          ticking = false;
+        });
+      }
+    };
+
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -26,6 +38,13 @@ const Navbar = () => {
   useEffect(() => {
     setMobileOpen(false);
   }, [location]);
+
+  useEffect(() => {
+    const toggleButton = mobileToggleRef.current;
+    if (!toggleButton) return;
+    toggleButton.setAttribute("aria-expanded", mobileOpen ? "true" : "false");
+    toggleButton.setAttribute("aria-label", mobileOpen ? "Close navigation" : "Open navigation");
+  }, [mobileOpen]);
 
   return (
     <nav
@@ -73,8 +92,12 @@ const Navbar = () => {
             Deploy a Mission
           </Link>
           <button
+            ref={mobileToggleRef}
             className="lg:hidden text-foreground"
             onClick={() => setMobileOpen(!mobileOpen)}
+            aria-controls="mobile-navigation"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -85,6 +108,7 @@ const Navbar = () => {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
+            id="mobile-navigation"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}

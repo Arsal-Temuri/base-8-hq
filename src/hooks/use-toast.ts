@@ -3,7 +3,8 @@ import * as React from "react";
 import type { ToastActionElement, ToastProps } from "@/components/ui/toast";
 
 const TOAST_LIMIT = 1;
-const TOAST_REMOVE_DELAY = 1000000;
+// Reduce default remove delay to 5s to avoid long-lived internal state
+const TOAST_REMOVE_DELAY = 5000;
 
 type ToasterToast = ToastProps & {
   id: string;
@@ -77,9 +78,11 @@ export const reducer = (state: State, action: Action): State => {
       };
 
     case "UPDATE_TOAST":
+      // Guard against malformed UPDATE_TOAST actions without an id
+      if (!action.toast || !("id" in action.toast)) return state;
       return {
         ...state,
-        toasts: state.toasts.map((t) => (t.id === action.toast.id ? { ...t, ...action.toast } : t)),
+        toasts: state.toasts.map((t) => (t.id === (action.toast as ToasterToast).id ? { ...t, ...(action.toast as ToasterToast) } : t)),
       };
 
     case "DISMISS_TOAST": {
@@ -174,7 +177,7 @@ function useToast() {
         listeners.splice(index, 1);
       }
     };
-  }, [state]);
+  }, []);
 
   return {
     ...state,

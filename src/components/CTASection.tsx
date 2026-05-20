@@ -7,7 +7,6 @@ const CTASection = () => (
     <div className="absolute inset-0 flex items-center justify-center">
       <div className="w-[600px] h-[600px] rounded-full bg-primary/5 blur-[120px]" />
     </div>
-    <div className="absolute top-1/2 left-0 right-0 glow-separator" />
 
     <motion.div
       initial={{ opacity: 0, y: 30 }}

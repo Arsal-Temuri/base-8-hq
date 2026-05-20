@@ -46,7 +46,8 @@ export const initClickSound = () => {
   if (typeof window === "undefined" || typeof document === "undefined") return;
 
   if (window.__base8ClickSoundHandler) {
-    document.removeEventListener("click", window.__base8ClickSoundHandler, true);
+    const targetRemove = document.body || document;
+    targetRemove.removeEventListener("click", window.__base8ClickSoundHandler, true);
   }
 
   const handler: EventListener = (nativeEvent) => {
@@ -58,11 +59,14 @@ export const initClickSound = () => {
 
     const interactiveElement = target.closest(CLICK_TARGET_SELECTOR);
     if (!(interactiveElement instanceof HTMLElement)) return;
+    // Allow opting out of click sounds on sensitive areas
+    if (interactiveElement.closest('[data-no-click-sound]')) return;
     if (shouldSkipTarget(interactiveElement)) return;
 
     playClickSound();
   };
 
   window.__base8ClickSoundHandler = handler;
-  document.addEventListener("click", handler, true);
+  const targetAdd = document.body || document;
+  targetAdd.addEventListener("click", handler, true);
 };

@@ -48,6 +48,7 @@ const Contact = () => {
   // 3. Handle form submission with validated data
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
+    setSubmitError(null);
     try {
       const response = await fetch(import.meta.env.VITE_CONTACT_FORM_URL, {
         method: "POST",
@@ -58,6 +59,7 @@ const Contact = () => {
       setSubmitted(true);
     } catch (error) {
       console.error("Contact form error:", error);
+      setSubmitError((error as Error)?.message ?? "Submission failed");
     } finally {
       setIsSubmitting(false);
     }
@@ -79,7 +81,6 @@ const Contact = () => {
             >
               {[
                 { icon: Mail, label: "Email", value: "ops@base8hq.com" },
-                { icon: MapPin, label: "Location", value: "HQ District, Innovation Tower, Floor 8" },
                 { icon: Phone, label: "Comms Line", value: "+1 (555) 808-BASE" },
               ].map(({ icon: Icon, label, value }) => (
                 <div key={label} className="card-glass rounded-sm p-5 flex items-start gap-4">
