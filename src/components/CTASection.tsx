@@ -1,5 +1,7 @@
+"use client";
+
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const CTASection = () => (
   <section className="relative py-24 lg:py-32 overflow-hidden">
@@ -16,16 +18,16 @@ const CTASection = () => (
       className="relative container mx-auto px-4 text-center"
     >
       <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-6 max-w-3xl mx-auto leading-tight">
-        Ready to Build Your Brand's Headquarters?
+        Ready to Build Your Brand&apos;s Headquarters?
       </h2>
       <p className="text-muted-foreground mb-10 max-w-xl mx-auto">
         Deploy your next mission with a team that operates at the highest level of creative excellence.
       </p>
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
-        <Link to="/deploy-mission" className="btn-glow-filled rounded-sm">
+        <Link href="/deploy-mission" className="btn-glow-filled rounded-sm">
           Start a Project
         </Link>
-        <Link to="/contact" className="btn-glow rounded-sm">
+        <Link href="/contact" className="btn-glow rounded-sm">
           Get a Strategy Call
         </Link>
       </div>

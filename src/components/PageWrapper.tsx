@@ -1,5 +1,7 @@
+"use client";
+
 import { motion } from "framer-motion";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 const PageWrapper = ({ children }: { children: ReactNode }) => (
   <motion.div

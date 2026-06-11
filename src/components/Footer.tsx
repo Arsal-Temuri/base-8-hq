@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Linkedin, Instagram, Twitter } from "lucide-react";
 
 const Footer = () => {
@@ -18,7 +18,7 @@ const Footer = () => {
                 { label: "Strike Team", path: "/strike-team" },
                 { label: "Contact Point", path: "/contact" },
               ].map((l) => (
-                <Link key={l.path} to={l.path} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <Link key={l.path} href={l.path} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                   {l.label}
                 </Link>
               ))}

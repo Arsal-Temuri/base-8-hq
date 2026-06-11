@@ -1,4 +1,7 @@
+"use client";
+
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 interface ProjectCardProps {
   name: string;
@@ -16,10 +19,12 @@ const ProjectCard = ({ name, category, image, index }: ProjectCardProps) => (
     className="card-glass rounded-sm overflow-hidden group cursor-pointer"
   >
     <div className="aspect-video overflow-hidden relative">
-      <img
+      <Image
         src={image}
         alt={name}
-        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+        fill
+        sizes="(max-width: 640px) 100vw, 50vw"
+        className="object-cover group-hover:scale-110 transition-transform duration-700"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 p-4">

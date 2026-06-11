@@ -1,5 +1,9 @@
-import { useState, useEffect, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
@@ -15,7 +19,7 @@ const navLinks = [
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const location = useLocation();
+  const pathname = usePathname();
   const mobileToggleRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
@@ -36,8 +40,10 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
+    if (!mobileOpen) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMobileOpen(false);
-  }, [location]);
+  }, [pathname, mobileOpen]);
 
   useEffect(() => {
     const toggleButton = mobileToggleRef.current;
@@ -56,11 +62,14 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 lg:px-8 flex items-center justify-between h-16 lg:h-20">
         {/* Logo */}
-        <Link to="/" aria-label="BASE8HQ Home" className="flex items-center">
+        <Link href="/" aria-label="BASE8HQ Home" className="flex items-center">
           <div className="h-11 lg:h-14 w-44 lg:w-56 overflow-hidden">
-            <img
+            <Image
               src="/LOGO%20BASE%208%20HQ.png"
               alt="BASE8HQ"
+              width={224}
+              height={56}
+              priority
               className="h-full w-full object-cover object-[center_46%]"
             />
           </div>
@@ -71,9 +80,9 @@ const Navbar = () => {
           {navLinks.map((link) => (
             <Link
               key={link.path}
-              to={link.path}
+              href={link.path}
               className={`font-heading text-[0.65rem] tracking-widest uppercase transition-colors duration-200 ${
-                location.pathname === link.path
+                pathname === link.path
                   ? "text-primary"
                   : "text-muted-foreground hover:text-foreground"
               }`}
@@ -86,7 +95,7 @@ const Navbar = () => {
         {/* CTA + Mobile Toggle */}
         <div className="flex items-center gap-4">
           <Link
-            to="/deploy-mission"
+            href="/deploy-mission"
             className="hidden md:inline-block btn-glow rounded-sm"
           >
             Deploy a Mission
@@ -118,9 +127,9 @@ const Navbar = () => {
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
-                  to={link.path}
+                  href={link.path}
                   className={`font-heading text-sm tracking-widest uppercase ${
-                    location.pathname === link.path
+                    pathname === link.path
                       ? "text-primary"
                       : "text-muted-foreground"
                   }`}
@@ -128,7 +137,7 @@ const Navbar = () => {
                   {link.label}
                 </Link>
               ))}
-              <Link to="/deploy-mission" className="btn-glow-filled rounded-sm text-center mt-2">
+              <Link href="/deploy-mission" className="btn-glow-filled rounded-sm text-center mt-2">
                 Deploy a Mission
               </Link>
             </div>

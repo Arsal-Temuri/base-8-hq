@@ -1,5 +1,8 @@
+"use client";
+
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 interface TeamStat {
   label: string;
@@ -104,11 +107,13 @@ const TeamCard = ({ name, role, image, index }: TeamCardProps) => {
             className={`absolute inset-0 ${surfaceClasses} overflow-hidden [backface-visibility:hidden] [-webkit-backface-visibility:hidden]`}
           >
             <div className="h-full flex flex-col">
-              <div className="flex-1 overflow-hidden">
-                <img
+              <div className="relative flex-1 overflow-hidden">
+                <Image
                   src={image}
                   alt={name}
-                  className="w-full h-full object-cover transition-transform duration-500"
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-500"
                 />
               </div>
               <div className="p-3 sm:p-4">
