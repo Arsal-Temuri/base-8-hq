@@ -9,8 +9,15 @@ export const metadata: Metadata = {
 export default function Layout({ children }: { children: React.ReactNode }) {
   const baseUrl = "https://base8hq.com";
   const pageUrl = `${baseUrl}/operational-units`;
+  
+  const schemaJson = getWebPageJsonLd({ 
+    title: String(metadata.title),
+    description: String(metadata.description),
+    url: pageUrl 
+  });
+
   return <>
     {children}
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getWebPageJsonLd({ title: metadata.title as string, description: metadata.description as string, url: pageUrl })) }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaJson) }} />
   </>;
 }

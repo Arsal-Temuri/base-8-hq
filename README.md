@@ -7,11 +7,15 @@ This is the Next.js 16 version of the BASE8 Command Center. It has been successf
 - Formspree Project IDs 
 
 ## Environment Variables
-Create a `.env.local` file in the root of the `./next-app` folder with the following variables:
+
+Create a `.env.local` file in the **root of the project** with the following variables:
+
 ```bash
 NEXT_PUBLIC_CONTACT_FORM_URL="https://formspree.io/f/YOUR_CONTACT_ID"
 NEXT_PUBLIC_DEPLOY_FORM_URL="https://formspree.io/f/YOUR_DEPLOY_ID"
 ```
+
+**Note:** The `NEXT_PUBLIC_` prefix is required so these variables are accessible in the browser. Replace `YOUR_CONTACT_ID` and `YOUR_DEPLOY_ID` with your actual Formspree project IDs.
 
 ## Getting Started
 

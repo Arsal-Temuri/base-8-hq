@@ -39,11 +39,11 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Close mobile menu when navigating to a new route
   useEffect(() => {
-    if (!mobileOpen) return;
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setMobileOpen(false);
-  }, [pathname, mobileOpen]);
+    const timer = setTimeout(() => setMobileOpen(false), 0);
+    return () => clearTimeout(timer);
+  }, [pathname]);
 
   useEffect(() => {
     const toggleButton = mobileToggleRef.current;
