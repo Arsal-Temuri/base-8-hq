@@ -19,10 +19,10 @@ const projectCement = "/assets/project-cement.jpg";
 const projectCoffee = "/assets/project-coffee.jpg";
 const projectFitness = "/assets/project-fitness.jpg";
 const projectAerospace = "/assets/project-aerospace.jpg";
-const teamCommander = "/assets/team-commander.jpg";
-const teamStrategist = "/assets/team-strategist.jpg";
-const teamDesigner = "/assets/team-designer.jpg";
-const teamMarketing = "/assets/team-marketing.jpg";
+const teamChairman = "/assets/sultani.jpeg";
+const teamCTO = "/assets/temuri.jpeg";
+const teamStrategist = "/assets/qureshi.jpeg";
+const teamVisualArchitect = "/assets/mustafa.jpeg";
 
 const services = [
   {
@@ -83,10 +83,10 @@ const projects = [
 ];
 
 const team = [
-  { name: "Marcus Vane", role: "Commander", image: teamCommander },
-  { name: "Aria Chen", role: "Creative Strategist", image: teamStrategist },
-  { name: "Leo Kasper", role: "Design Specialist", image: teamDesigner },
-  { name: "Nina Volkov", role: "Marketing Lead", image: teamMarketing },
+  { name: "Mr. Sultani", role: "Founder & Creative Director", image: teamChairman },
+  { name: "Mr. Temuri", role: "Cofounder & CTO", image: teamCTO },
+  { name: "Mr. Qureshi", role: "Cofounder & Director of Strategic Development", image: teamStrategist },
+  { name: "Mr. H. Mustafa", role: "Chief Visual Architect", image: teamVisualArchitect },
 ];
 
 export default function Home() {
