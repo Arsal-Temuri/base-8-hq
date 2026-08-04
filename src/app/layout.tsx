@@ -27,6 +27,11 @@ export const metadata: Metadata = {
     template: "%s | BASE8HQ",
     default: "BASE8 Headquarters | Creative & Marketing Agency",
   },
+  icons: {
+    icon: "/LOGO%20BASE%208%20HQ.png",
+    shortcut: "/LOGO%20BASE%208%20HQ.png",
+    apple: "/LOGO%20BASE%208%20HQ.png",
+  },
   description: "A high-performance creative command center built for brands that refuse to blend in. Branding, strategy, and media production.",
   keywords: ["marketing", "creative agency", "branding", "web development", "video production", "digital marketing"],
   openGraph: {
