@@ -33,9 +33,9 @@ const services = [
   },
   {
     icon: Palette,
-    title: "Visual Design Unit",
+    title: "Visual Communications Unit",
     description:
-      "Our visual team delivers graphic design, marketing collateral, digital creative assets, and social media design that stays on-brand.",
+      "Our visual team creates brand graphics, print and digital collateral, campaign creatives, and presentation design that sharpen every message.",
   },
   {
     icon: Video,
@@ -69,9 +69,9 @@ const services = [
   },
   {
     icon: Eye,
-    title: "Visualization & Design Unit",
+    title: "3D Visualization Unit",
     description:
-      "We provide 3D modeling, 3D design, architectural and interior visualization, plus CAD design for high-fidelity presentation.",
+      "We deliver 3D modeling, 3D sculpting, architectural and interior/exterior visualization, plus AutoCAD drafting for immersive presentation.",
   },
 ];
 
@@ -83,10 +83,10 @@ const projects = [
 ];
 
 const team = [
-  { name: "Mr. Sultani", role: "Founder & Creative Director", image: teamChairman },
-  { name: "Mr. Temuri", role: "Cofounder & CTO", image: teamCTO },
-  { name: "Mr. Qureshi", role: "Cofounder & Director of Strategic Development", image: teamStrategist },
-  { name: "Mr. H. Mustafa", role: "Chief Visual Architect", image: teamVisualArchitect },
+  { name: "Mr. Sultani", role: "Creative Director", image: teamChairman },
+  { name: "Mr. Temuri", role: "Technology Lead", image: teamCTO },
+  { name: "Mr. Qureshi", role: "Strategy Lead", image: teamStrategist },
+  { name: "Mr. H. Mustafa", role: "Visual Lead", image: teamVisualArchitect },
 ];
 
 export default function Home() {
@@ -206,14 +206,14 @@ export default function Home() {
       {/* STRIKE TEAM */}
       <section className="py-20 lg:py-28">
         <div className="container mx-auto px-4">
-          <SectionHeader tag="Team" title="Strike Team" subtitle="The elite operatives behind every successful mission." />
+          <SectionHeader tag="Team" title="Our Team" subtitle="The people behind every successful mission." />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {team.map((t, i) => (
               <TeamCard key={t.name} {...t} index={i} />
             ))}
           </div>
           <div className="text-center mt-10">
-            <Link href="/strike-team" className="btn-glow rounded-sm">View Strike Team</Link>
+            <Link href="/strike-team" className="btn-glow rounded-sm">Meet the Team</Link>
           </div>
         </div>
       </section>

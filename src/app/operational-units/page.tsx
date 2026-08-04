@@ -28,12 +28,12 @@ const units = [
   },
   {
     icon: Palette,
-    title: "Visual Design Unit",
+    title: "Visual Communications Unit",
     services: [
-      "Graphic Design",
-      "Marketing Collateral",
-      "Digital Creative Assets",
-      "Social Media Design",
+      "Brand Graphics",
+      "Print & Digital Collateral",
+      "Campaign Creatives",
+      "Presentation Design",
     ],
   },
   {
@@ -88,13 +88,12 @@ const units = [
   },
   {
     icon: Eye,
-    title: "Visualization & Design Unit",
+    title: "3D Visualization Unit",
     services: [
       "3D Modeling",
-      "3D Design",
-      "Architectural Visualization",
-      "Interior Design Visualization",
-      "CAD Design",
+      "3D Sculpting",
+      "Interior & Exterior Visualization",
+      "AutoCAD Drafting",
     ],
   },
 ] satisfies OperationalUnit[];

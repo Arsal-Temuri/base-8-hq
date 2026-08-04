@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, Linkedin, Instagram, Twitter } from "lucide-react";
+import { Mail, Phone, Linkedin, Instagram, MessageCircleMore } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -85,29 +85,35 @@ const ContactPage = () => {
               className="space-y-6"
             >
               {[
-                { icon: Mail, label: "Email", value: "ops@base8hq.com" },
-                { icon: Phone, label: "Comms Line", value: "+1 (555) 808-BASE" },
-              ].map(({ icon: Icon, label, value }) => (
+                { icon: Mail, label: "Email", value: "base8headquarters@gmail.com", href: "mailto:base8headquarters@gmail.com" },
+                { icon: Phone, label: "Comms Line", value: "+92 339 6006135", href: "https://wa.me/923396006135" },
+              ].map(({ icon: Icon, label, value, href }) => (
                 <div key={label} className="card-glass rounded-sm p-5 flex items-start gap-4">
                   <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center border border-primary/30 rounded-sm text-primary">
                     <Icon size={16} />
                   </div>
                   <div>
                     <p className="font-heading text-[0.65rem] tracking-widest text-primary mb-1">{label}</p>
-                    <p className="text-sm text-muted-foreground">{value}</p>
+                    {href ? (
+                      <a href={href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                        {value}
+                      </a>
+                    ) : (
+                      <p className="text-sm text-muted-foreground">{value}</p>
+                    )}
                   </div>
                 </div>
               ))}
 
               <div className="flex gap-3 pt-2">
                 {[
-                  { icon: Linkedin, label: "LinkedIn" },
-                  { icon: Instagram, label: "Instagram" },
-                  { icon: Twitter, label: "Twitter" },
-                ].map(({ icon: Icon, label }) => (
+                  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/base8hq/" },
+                  { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/base8hq" },
+                  { icon: MessageCircleMore, label: "WhatsApp", href: "https://wa.me/923396006135" },
+                ].map(({ icon: Icon, label, href }) => (
                   <a
                     key={label}
-                    href="#"
+                    href={href}
                     aria-label={label}
                     title={label}
                     className="w-10 h-10 flex items-center justify-center border border-primary/30 rounded-sm text-muted-foreground hover:text-primary hover:border-primary/60 transition-all"
