@@ -1,27 +1,4 @@
-"use client";
-
-import type { ComponentProps } from "react";
-import { Toaster as Sonner, toast } from "sonner";
-
-type ToasterProps = ComponentProps<typeof Sonner>;
-
-const Toaster = ({ ...props }: ToasterProps) => {
-  return (
-    <Sonner
-      theme={"dark"}
-      className="toaster group"
-      toastOptions={{
-        classNames: {
-          toast:
-            "group toast group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-border group-[.toaster]:shadow-lg",
-          description: "group-[.toast]:text-muted-foreground",
-          actionButton: "group-[.toast]:bg-primary group-[.toast]:text-primary-foreground",
-          cancelButton: "group-[.toast]:bg-muted group-[.toast]:text-muted-foreground",
-        },
-      }}
-      {...props}
-    />
-  );
-};
-
-export { Toaster, toast };
+// DEAD FILE — This component is not used anywhere in the project.
+// Safe to delete. Was previously mounted via <Toaster /> in providers.tsx
+// which has been removed since toast() is never called anywhere in the codebase.
+export {};
