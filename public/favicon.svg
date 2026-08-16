@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">BASE 8 Headquarters emblem</title>
+  <desc id="desc">The amber BASE 8 Headquarters core emblem on a transparent background.</desc>
+  <g fill="#F5B301">
+    <path d="M336 208 435 416 286 744 91 819Z"/>
+    <path d="M692 208 937 819 742 744 593 416Z"/>
+    <path d="M514 453 597 660 514 615 427 660Z"/>
+  </g>
+</svg>
