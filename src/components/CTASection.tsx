@@ -18,10 +18,10 @@ const CTASection = () => (
       className="relative container mx-auto px-4 text-center"
     >
       <h2 className="font-heading text-2xl md:text-3xl lg:text-[2.6rem] font-semibold text-foreground mb-5 max-w-3xl mx-auto leading-tight tracking-[0.07em] text-shadow-heading">
-        Ready to Build Your Brand&apos;s Headquarters?
+        Bring us the mission. We&apos;ll map the move.
       </h2>
       <p className="text-muted-foreground mb-12 max-w-lg mx-auto text-[0.9rem] md:text-base leading-relaxed tracking-wide text-shadow-body">
-        Deploy your next mission with a team that operates at the highest level of creative excellence.
+        Tell us where the brand is, where it needs to go and what is getting in the way. We&apos;ll assemble the right command.
       </p>
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <Link href="/deploy-mission" className="btn-glow-filled rounded-sm">
