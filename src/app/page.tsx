@@ -19,10 +19,10 @@ const projectCement = "/assets/project-cement.jpg";
 const projectCoffee = "/assets/project-coffee.jpg";
 const projectFitness = "/assets/project-fitness.jpg";
 const projectAerospace = "/assets/project-aerospace.jpg";
-const teamChairman = "/assets/sultani.jpeg";
-const teamCTO = "/assets/temuri.jpeg";
-const teamStrategist = "/assets/qureshi.jpeg";
-const teamVisualArchitect = "/assets/mustafa.jpeg";
+const teamChairman = "/assets/Sultani%20B8.png";
+const teamCTO = "/assets/Arsal%20Temuri%20B8.png";
+const teamStrategist = "/assets/Qureshi%20B8.png";
+const teamVisualArchitect = "/assets/Hassan%20B8.png";
 
 const services = [
   {
@@ -83,10 +83,10 @@ const projects = [
 ];
 
 const team = [
-  { name: "Mr. Sultani", role: "Creative Director", image: teamChairman },
-  { name: "Mr. Temuri", role: "Technology Lead", image: teamCTO },
-  { name: "Mr. Qureshi", role: "Strategy Lead", image: teamStrategist },
-  { name: "Mr. H. Mustafa", role: "Visual Lead", image: teamVisualArchitect },
+  { name: "MR. SULTANI", role: "Founder & Creative Director", image: teamChairman },
+  { name: "MR. TEMURI", role: "Co-Founder & Head of Technology", image: teamCTO },
+  { name: "MR. QURESHI", role: "Co-Founder & Director of Strategic Development & Operations", image: teamStrategist },
+  { name: "MR. H. MUSTAFA", role: "Co-Founder & Director of Design & Visualisation", image: teamVisualArchitect },
 ];
 
 export default function Home() {
@@ -136,7 +136,7 @@ export default function Home() {
       {/* OPERATIONAL UNITS */}
       <section className="py-20 lg:py-28 section-veil">
         <div className="container mx-auto px-4">
-          <SectionHeader tag="Units" title="Operational Units" subtitle="Specialized divisions engineered for every aspect of Media and Marketing" />
+          <SectionHeader tag="Units" title="Operational Units" subtitle="Specialized divisions engineered for every aspect of Media, Marketing and IT solutions." />
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {services.map((s, i) => (
               <ServiceCard key={s.title} {...s} index={i} />

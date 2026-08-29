@@ -17,44 +17,44 @@ interface TeamCardProps {
 }
 
 const TEAM_INTEL: Record<string, TeamMemberIntel> = {
-  "Mr. Sultani": {
-    bio: "Creative director driving brand vision, campaign strategy and full-scale production from concept to delivery.",
+  "MR. SULTANI": {
+    bio: "Founder and creative visionary steering the brand’s narrative, direction, and high-impact executions across all major campaigns.",
     capabilities: [
-      "Brand Strategy, Positioning & Creative Direction",
-      "Marketing Campaign Planning & Content Strategy",
-      "Film, Video, Audio & Voice-over Production",
-      "Creative Project Management & Coordination",
-      "Client Presentations & Brand Growth",
+      "Brand direction & creative leadership",
+      "Campaign concepting & storytelling",
+      "Creative production oversight",
+      "Client vision alignment",
+      "High-end brand positioning",
     ],
   },
-  "Mr. Temuri": {
-    bio: "Technology lead building digital products, interfaces and intelligent systems that power modern brands.",
+  "MR. TEMURI": {
+    bio: "Co-founder leading the digital infrastructure behind BASE8HQ, building systems and experiences that scale with the business.",
     capabilities: [
-      "Web Development",
-      "App Development",
-      "UI / UX Design",
-      "Software Consultation",
-      "AI Automation",
+      "Web & product development",
+      "UX architecture & digital systems",
+      "Technology strategy & execution",
+      "AI-driven workflow design",
+      "Scalable platform thinking",
     ],
   },
-  "Mr. Qureshi": {
-    bio: "Strategy lead turning market insight into operational advantage through data-driven decision making.",
+  "MR. QURESHI": {
+    bio: "Co-founder shaping strategic growth, operational systems, and execution frameworks that turn insight into measurable momentum.",
     capabilities: [
-      "Business Strategy, Market Research & Discovery",
-      "UX Thinking & Digital Experiences",
-      "Performance Marketing & Meta Advertising",
-      "Process Optimization & Workflow Analysis",
-      "Systems Thinking & Digital Growth",
+      "Strategic planning & execution",
+      "Business operations & growth systems",
+      "Market research & decision support",
+      "Performance marketing oversight",
+      "Operational efficiency design",
     ],
   },
-  "Mr. H. Mustafa": {
-    bio: "Visual lead crafting high-fidelity 3D assets and graphic design that define the brand's visual language.",
+  "MR. H. MUSTAFA": {
+    bio: "Co-founder and visual lead transforming ideas into compelling, high-fidelity designs and immersive visual experiences.",
     capabilities: [
-      "3D Character, Prop & Digital Asset Modeling",
-      "Architectural 3D Interior & Exterior Visualization",
-      "Logo Design, Branding & Image Manipulation",
-      "Posters, Social Media Graphics & Thumbnails",
-      "Professional High-Quality Visual Design",
+      "3D visualization & design direction",
+      "Brand visual storytelling",
+      "Concept art & presentation design",
+      "Architectural & product visuals",
+      "Premium visual execution",
     ],
   },
 };
@@ -62,11 +62,11 @@ const TEAM_INTEL: Record<string, TeamMemberIntel> = {
 const getFallbackIntel = (role: string): TeamMemberIntel => ({
   bio: `Elite ${role.toLowerCase()} assigned to precision brand operations across digital and creative fronts.`,
   capabilities: [
-    "Strategic brand operations",
-    "Cross-channel execution",
+    "Strategic oversight",
+    "Cross-functional execution",
     "Creative problem solving",
-    "Client engagement & communication",
-    "Campaign planning & delivery",
+    "Client-facing leadership",
+    "High-impact delivery",
   ],
 });
 
@@ -90,7 +90,7 @@ const TeamCard = ({ name, role, image, index }: TeamCardProps) => {
       onMouseLeave={() => setFlipped(false)}
       className="w-full"
     >
-      <div className="relative w-full aspect-[2/3] sm:aspect-[3/4] [perspective:1400px]">
+      <div className="relative w-full aspect-[2/3] sm:aspect-[3/4.4] xl:aspect-[3/4.8] [perspective:1400px]">
         <div
           className={`relative h-full w-full transform-gpu transition-transform [transition-duration:1500ms] [transform-style:preserve-3d] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] [will-change:transform] ${flipTransformClass}`}
         >
@@ -99,13 +99,13 @@ const TeamCard = ({ name, role, image, index }: TeamCardProps) => {
             className={`absolute inset-0 ${surfaceClasses} overflow-hidden [backface-visibility:hidden] [-webkit-backface-visibility:hidden]`}
           >
             <div className="h-full flex flex-col">
-              <div className="relative flex-1 overflow-hidden">
+              <div className="relative flex-[1.8] overflow-hidden">
                 <Image
                   src={image}
                   alt={name}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  className="object-cover transition-transform duration-500"
+                  className="object-cover object-top transition-transform duration-500"
                 />
               </div>
               <div className="p-3 sm:p-4">

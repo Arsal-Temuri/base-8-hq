@@ -7,10 +7,10 @@ import TeamCard from "@/components/TeamCard";
 import CTASection from "@/components/CTASection";
 
 const team = [
-  { name: "Mr. Sultani", role: "Creative Director", image: "/assets/sultani.jpeg" },
-  { name: "Mr. Temuri", role: "Technology Lead", image: "/assets/temuri.jpeg" },
-  { name: "Mr. Qureshi", role: "Strategy Lead", image: "/assets/qureshi.jpeg" },
-  { name: "Mr. H. Mustafa", role: "Visual Lead", image: "/assets/mustafa.jpeg" },
+  { name: "MR. SULTANI", role: "Founder & Creative Director", image: "/assets/Sultani%20B8.png" },
+  { name: "MR. TEMURI", role: "Co-Founder & Head of Technology", image: "/assets/Arsal%20Temuri%20B8.png" },
+  { name: "MR. QURESHI", role: "Co-Founder & Director of Strategic Development & Operations", image: "/assets/Qureshi%20B8.png" },
+  { name: "MR. H. MUSTAFA", role: "Co-Founder & Director of Design & Visualisation", image: "/assets/Hassan%20B8.png" },
 ];
 
 const shadows = [
