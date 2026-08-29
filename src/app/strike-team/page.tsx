@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
+import Link from "next/link";
 import PageWrapper from "@/components/PageWrapper";
 import SectionHeader from "@/components/SectionHeader";
 import TeamCard from "@/components/TeamCard";
@@ -62,9 +63,9 @@ const StrikeTeamPage = () => (
               </li>
             </ul>
             
-            <button className="px-8 py-3 border border-primary/80 text-primary font-heading text-sm font-semibold tracking-widest uppercase hover:bg-primary/10 hover:shadow-[0_0_15px_rgba(255,165,0,0.3)] transition-all duration-300 mb-6 rounded-sm">
+            <Link href="/shadow-operative" className="inline-block px-8 py-3 border border-primary/80 text-primary font-heading text-sm font-semibold tracking-widest uppercase hover:bg-primary/10 hover:shadow-[0_0_15px_rgba(255,165,0,0.3)] transition-all duration-300 mb-6 rounded-sm">
               Submit Operative Profile
-            </button>
+            </Link>
             
             <p className="text-xs text-muted-foreground/70">
               Profiles remain on file for future BASE8HQ missions.
