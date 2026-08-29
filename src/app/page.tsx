@@ -112,7 +112,7 @@ export default function Home() {
                 Command Center for Brand Domination
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-4 text-[0.9rem] md:text-base tracking-wide text-shadow-body">
-                BASE8HQ is not your average agency. We are a high-performance creative command center built for brands that refuse to blend in. Our structure allows us to remain agile while delivering high quality solutions across branding, media production, marketing strategy, and digital development.
+                BASE8HQ is not your average agency. We are a high-performance creative command center built for brands that refuse to blend in. Our structure allows us to remain agile while delivering strategic media, marketing & IT solutions.
               </p>
               <p className="text-muted-foreground leading-relaxed text-[0.9rem] md:text-base tracking-wide text-shadow-body">
                 Every project begins with understanding the mission and ends with deploying the right creative solution.
