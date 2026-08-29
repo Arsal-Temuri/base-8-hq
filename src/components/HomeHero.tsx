@@ -15,7 +15,7 @@ export default function HomeHero() {
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-8 items-center min-h-[80vh]">
           
           {/* LEFT: Hero Content */}
-          <div className="text-center lg:text-left flex flex-col items-center lg:items-start order-2 lg:order-1">
+          <div className="text-center lg:text-left flex flex-col items-center lg:items-start order-1">
             <motion.div
               initial={{ opacity: 0, y: 44 }}
               animate={{ opacity: 1, y: 0 }}
@@ -46,7 +46,7 @@ export default function HomeHero() {
           </div>
 
           {/* RIGHT: Hero Core System */}
-          <div className="relative flex justify-center items-center order-1 lg:order-2 h-[350px] sm:h-[400px] lg:h-[600px] w-full">
+          <div className="relative flex justify-center items-center order-2 h-[350px] sm:h-[400px] lg:h-[600px] w-full">
             <motion.div 
               initial={{ opacity: 0, scale: 0.85 }}
               animate={{ opacity: 1, scale: 1 }}
