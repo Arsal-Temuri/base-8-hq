@@ -66,7 +66,7 @@ const formSchema = z.object({
   
   experienceYears: z.string().min(1, "Please select years of experience"),
   expertiseDescription: z.string().min(1, "Please describe your expertise"),
-  project1: z.string().url("Must be a valid URL").optional().or(z.literal("")),
+  project1: z.string().url("Must be a valid URL"),
   project2: z.string().url("Must be a valid URL").optional().or(z.literal("")),
   project3: z.string().url("Must be a valid URL").optional().or(z.literal("")),
   tools: z.string().optional(),
@@ -122,13 +122,22 @@ export default function ShadowOperativePage() {
     setIsSubmitting(true);
     setSubmitError(null);
     try {
+      const { fullName, email, ...rest } = values;
+      const payload = {
+        name: fullName,
+        email: email,
+        _replyto: email,
+        _subject: `New Shadow Operative Application: ${fullName}`,
+        ...rest
+      };
+
       const response = await fetch(process.env.NEXT_PUBLIC_SHADOW_FORM_URL ?? "", {
         method: "POST",
         headers: { 
           "Content-Type": "application/json",
           "Accept": "application/json"
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify(payload),
       });
       if (!response.ok) throw new Error("Submission failed");
       setIsSubmitted(true);
@@ -207,7 +216,7 @@ export default function ShadowOperativePage() {
 
                     <FormField control={form.control} name="displayName" render={({ field }) => (
                       <FormItem>
-                        <FormLabel className={labelClasses}>Professional / Display Name</FormLabel>
+                        <FormLabel className={labelClasses}>Professional / Display Name (Optional)</FormLabel>
                         <FormControl><Input placeholder="[Optional]" {...field} className={inputClasses} /></FormControl>
                         <FormMessage />
                       </FormItem>
@@ -243,7 +252,7 @@ export default function ShadowOperativePage() {
                   <div className="grid sm:grid-cols-2 gap-5">
                     <FormField control={form.control} name="linkedin" render={({ field }) => (
                       <FormItem>
-                        <FormLabel className={labelClasses}>LinkedIn Profile</FormLabel>
+                        <FormLabel className={labelClasses}>LinkedIn Profile (Optional)</FormLabel>
                         <FormControl><Input placeholder="[Paste LinkedIn URL]" {...field} className={inputClasses} autoComplete="url" /></FormControl>
                         <FormMessage />
                       </FormItem>
@@ -251,7 +260,7 @@ export default function ShadowOperativePage() {
 
                     <FormField control={form.control} name="portfolio" render={({ field }) => (
                       <FormItem>
-                        <FormLabel className={labelClasses}>Personal Website / Portfolio</FormLabel>
+                        <FormLabel className={labelClasses}>Personal Website / Portfolio (Optional)</FormLabel>
                         <FormControl><Input placeholder="[Paste portfolio URL]" {...field} className={inputClasses} autoComplete="url" /></FormControl>
                         <FormMessage />
                       </FormItem>
@@ -284,7 +293,7 @@ export default function ShadowOperativePage() {
 
                   <FormField control={form.control} name="secondarySkills" render={({ field }) => (
                     <FormItem>
-                      <FormLabel className={labelClasses}>Secondary Skills</FormLabel>
+                      <FormLabel className={labelClasses}>Secondary Skills (Optional)</FormLabel>
                       <p className="text-xs text-muted-foreground mb-4">Select all that apply.</p>
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                         {primaryFields.map((pf) => (
@@ -309,7 +318,7 @@ export default function ShadowOperativePage() {
 
                   <FormField control={form.control} name="otherSpecialisation" render={({ field }) => (
                     <FormItem>
-                      <FormLabel className={labelClasses}>Other Specialisation</FormLabel>
+                      <FormLabel className={labelClasses}>Other Specialisation (Optional)</FormLabel>
                       <p className="text-xs text-muted-foreground mb-2">If your field is not listed, tell us what you do.</p>
                       <FormControl><Input placeholder="[Your other specialisation]" {...field} className={inputClasses} /></FormControl>
                     </FormItem>
@@ -349,24 +358,24 @@ export default function ShadowOperativePage() {
                   )} />
 
                   <div className="space-y-4">
-                    <FormLabel className={labelClasses}>Selected Work / Project Links</FormLabel>
+                    <FormLabel className={labelClasses}>Selected Work / Project Links *</FormLabel>
                     <p className="text-xs text-muted-foreground mb-2">Share up to 3 examples of your strongest work.</p>
                     
                     <FormField control={form.control} name="project1" render={({ field }) => (
                       <FormItem>
-                        <FormControl><Input placeholder="PROJECT 01 [URL]" {...field} className={inputClasses} /></FormControl>
+                        <FormControl><Input placeholder="PROJECT 01 [URL] *" {...field} className={inputClasses} /></FormControl>
                         <FormMessage />
                       </FormItem>
                     )} />
                     <FormField control={form.control} name="project2" render={({ field }) => (
                       <FormItem>
-                        <FormControl><Input placeholder="PROJECT 02 [URL]" {...field} className={inputClasses} /></FormControl>
+                        <FormControl><Input placeholder="PROJECT 02 [URL] (Optional)" {...field} className={inputClasses} /></FormControl>
                         <FormMessage />
                       </FormItem>
                     )} />
                     <FormField control={form.control} name="project3" render={({ field }) => (
                       <FormItem>
-                        <FormControl><Input placeholder="PROJECT 03 [URL]" {...field} className={inputClasses} /></FormControl>
+                        <FormControl><Input placeholder="PROJECT 03 [URL] (Optional)" {...field} className={inputClasses} /></FormControl>
                         <FormMessage />
                       </FormItem>
                     )} />
@@ -374,7 +383,7 @@ export default function ShadowOperativePage() {
 
                   <FormField control={form.control} name="tools" render={({ field }) => (
                     <FormItem>
-                      <FormLabel className={labelClasses}>Tools / Software / Platforms</FormLabel>
+                      <FormLabel className={labelClasses}>Tools / Software / Platforms (Optional)</FormLabel>
                       <p className="text-xs text-muted-foreground mb-2">List the primary tools, software or platforms you work with.</p>
                       <FormControl><Textarea className={`min-h-[80px] resize-none ${inputClasses}`} placeholder="[Type here...]" {...field} /></FormControl>
                     </FormItem>
@@ -447,14 +456,14 @@ export default function ShadowOperativePage() {
                   <div className="grid sm:grid-cols-2 gap-5">
                     <FormField control={form.control} name="typicalRate" render={({ field }) => (
                       <FormItem>
-                        <FormLabel className={labelClasses}>Typical Rate</FormLabel>
+                        <FormLabel className={labelClasses}>Typical Rate (Optional)</FormLabel>
                         <FormControl><Input placeholder="[Amount/Range]" {...field} className={inputClasses} /></FormControl>
                       </FormItem>
                     )} />
 
                     <FormField control={form.control} name="currency" render={({ field }) => (
                       <FormItem>
-                        <FormLabel className={labelClasses}>Currency</FormLabel>
+                        <FormLabel className={labelClasses}>Currency (Optional)</FormLabel>
                         <FormControl><Input placeholder="[PKR/USD/EUR...]" {...field} className={inputClasses} /></FormControl>
                       </FormItem>
                     )} />
@@ -462,7 +471,7 @@ export default function ShadowOperativePage() {
 
                   <FormField control={form.control} name="pricingMethod" render={({ field }) => (
                     <FormItem>
-                      <FormLabel className={labelClasses}>Pricing Method</FormLabel>
+                      <FormLabel className={labelClasses}>Pricing Method (Optional)</FormLabel>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                           <SelectTrigger className={inputClasses}>
@@ -485,7 +494,7 @@ export default function ShadowOperativePage() {
                   
                   <FormField control={form.control} name="missionInterest" render={({ field }) => (
                     <FormItem>
-                      <FormLabel className={labelClasses}>What types of missions would you like to work on?</FormLabel>
+                      <FormLabel className={labelClasses}>What types of missions would you like to work on? (Optional)</FormLabel>
                       <p className="text-xs text-muted-foreground mb-4">Select all that apply.</p>
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                         {missionInterests.map((opt) => (
@@ -510,14 +519,14 @@ export default function ShadowOperativePage() {
 
                   <FormField control={form.control} name="whyJoin" render={({ field }) => (
                     <FormItem>
-                      <FormLabel className={labelClasses}>Why do you want to join the network?</FormLabel>
+                      <FormLabel className={labelClasses}>Why do you want to join the network? (Optional)</FormLabel>
                       <FormControl><Textarea className={`min-h-[100px] resize-none ${inputClasses}`} placeholder="[Optional]" {...field} /></FormControl>
                     </FormItem>
                   )} />
 
                   <FormField control={form.control} name="anythingElse" render={({ field }) => (
                     <FormItem>
-                      <FormLabel className={labelClasses}>Anything Headquarters should know?</FormLabel>
+                      <FormLabel className={labelClasses}>Anything Headquarters should know? (Optional)</FormLabel>
                       <FormControl><Textarea className={`min-h-[80px] resize-none ${inputClasses}`} placeholder="[Optional]" {...field} /></FormControl>
                     </FormItem>
                   )} />
