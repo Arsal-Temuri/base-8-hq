@@ -154,6 +154,7 @@ const ContactPage = () => {
                             <Input
                               {...field}
                               className="w-full bg-background border border-primary/20 rounded-sm px-4 py-3 text-sm text-foreground focus:border-primary/60 focus:outline-none transition-colors"
+                              autoComplete="name"
                             />
                           </FormControl>
                           <FormMessage />
@@ -171,6 +172,7 @@ const ContactPage = () => {
                               {...field}
                               type="email"
                               className="w-full bg-background border border-primary/20 rounded-sm px-4 py-3 text-sm text-foreground focus:border-primary/60 focus:outline-none transition-colors"
+                              autoComplete="email"
                             />
                           </FormControl>
                           <FormMessage />
@@ -189,6 +191,7 @@ const ContactPage = () => {
                               type="tel"
                               placeholder="+1 (555) 123-4567"
                               className="w-full bg-background border border-primary/20 rounded-sm px-4 py-3 text-sm text-foreground focus:border-primary/60 focus:outline-none transition-colors"
+                              autoComplete="tel"
                             />
                           </FormControl>
                           <FormMessage />

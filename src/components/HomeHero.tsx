@@ -22,8 +22,8 @@ export default function HomeHero() {
               transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             >
               <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-[5.5rem] font-semibold mb-6 leading-[1.05] tracking-[0.05em]">
-                EVERY MOVE. <br className="hidden md:block" />
-                <span className="text-primary text-glow-amber">ONE HQ.</span>
+                <span className="whitespace-nowrap">EVERY MOVE.</span> <br className="hidden md:block" />
+                <span className="text-primary text-glow-amber whitespace-nowrap">ONE HQ.</span>
               </h1>
               <p className="font-sans text-[0.9rem] sm:text-base md:text-lg tracking-wide text-muted-foreground mb-10 max-w-xl leading-relaxed">
                 Eight operational units across brand, media, marketing and IT—coordinated from one independent creative headquarters.

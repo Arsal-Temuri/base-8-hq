@@ -200,7 +200,7 @@ export default function ShadowOperativePage() {
                     <FormField control={form.control} name="fullName" render={({ field }) => (
                       <FormItem>
                         <FormLabel className={labelClasses}>Full Name *</FormLabel>
-                        <FormControl><Input placeholder="[Enter your full name]" {...field} className={inputClasses} /></FormControl>
+                        <FormControl><Input placeholder="[Enter your full name]" {...field} className={inputClasses} autoComplete="name" /></FormControl>
                         <FormMessage />
                       </FormItem>
                     )} />
@@ -218,7 +218,7 @@ export default function ShadowOperativePage() {
                     <FormField control={form.control} name="location" render={({ field }) => (
                       <FormItem>
                         <FormLabel className={labelClasses}>City / Country *</FormLabel>
-                        <FormControl><Input placeholder="[Enter your location]" {...field} className={inputClasses} /></FormControl>
+                        <FormControl><Input placeholder="[Enter your location]" {...field} className={inputClasses} autoComplete="address-level2" /></FormControl>
                         <FormMessage />
                       </FormItem>
                     )} />
@@ -226,7 +226,7 @@ export default function ShadowOperativePage() {
                     <FormField control={form.control} name="contactNumber" render={({ field }) => (
                       <FormItem>
                         <FormLabel className={labelClasses}>WhatsApp / Contact Number *</FormLabel>
-                        <FormControl><Input placeholder="[Enter your contact number]" {...field} className={inputClasses} /></FormControl>
+                        <FormControl><Input placeholder="[Enter your contact number]" {...field} className={inputClasses} autoComplete="tel" /></FormControl>
                         <FormMessage />
                       </FormItem>
                     )} />
@@ -235,7 +235,7 @@ export default function ShadowOperativePage() {
                   <FormField control={form.control} name="email" render={({ field }) => (
                     <FormItem>
                       <FormLabel className={labelClasses}>Email Address *</FormLabel>
-                      <FormControl><Input type="email" placeholder="[Enter your email]" {...field} className={inputClasses} /></FormControl>
+                      <FormControl><Input type="email" placeholder="[Enter your email]" {...field} className={inputClasses} autoComplete="email" /></FormControl>
                       <FormMessage />
                     </FormItem>
                   )} />
@@ -244,7 +244,7 @@ export default function ShadowOperativePage() {
                     <FormField control={form.control} name="linkedin" render={({ field }) => (
                       <FormItem>
                         <FormLabel className={labelClasses}>LinkedIn Profile</FormLabel>
-                        <FormControl><Input placeholder="[Paste LinkedIn URL]" {...field} className={inputClasses} /></FormControl>
+                        <FormControl><Input placeholder="[Paste LinkedIn URL]" {...field} className={inputClasses} autoComplete="url" /></FormControl>
                         <FormMessage />
                       </FormItem>
                     )} />
@@ -252,7 +252,7 @@ export default function ShadowOperativePage() {
                     <FormField control={form.control} name="portfolio" render={({ field }) => (
                       <FormItem>
                         <FormLabel className={labelClasses}>Personal Website / Portfolio</FormLabel>
-                        <FormControl><Input placeholder="[Paste portfolio URL]" {...field} className={inputClasses} /></FormControl>
+                        <FormControl><Input placeholder="[Paste portfolio URL]" {...field} className={inputClasses} autoComplete="url" /></FormControl>
                         <FormMessage />
                       </FormItem>
                     )} />
@@ -288,8 +288,10 @@ export default function ShadowOperativePage() {
                       <p className="text-xs text-muted-foreground mb-4">Select all that apply.</p>
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                         {primaryFields.map((pf) => (
-                          <label key={`sec-${pf}`} className="flex items-center space-x-3 cursor-pointer group">
+                          <label key={`sec-${pf}`} htmlFor={`sec-${pf}`} className="flex items-center space-x-3 cursor-pointer group">
                             <input 
+                              id={`sec-${pf}`}
+                              name={`sec-${pf}`}
                               type="checkbox" 
                               checked={field.value?.includes(pf)} 
                               onChange={(e) => {
@@ -487,8 +489,10 @@ export default function ShadowOperativePage() {
                       <p className="text-xs text-muted-foreground mb-4">Select all that apply.</p>
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                         {missionInterests.map((opt) => (
-                          <label key={`interest-${opt}`} className="flex items-center space-x-3 cursor-pointer group">
+                          <label key={`interest-${opt}`} htmlFor={`interest-${opt}`} className="flex items-center space-x-3 cursor-pointer group">
                             <input 
+                              id={`interest-${opt}`}
+                              name={`interest-${opt}`}
                               type="checkbox" 
                               checked={field.value?.includes(opt)} 
                               onChange={(e) => {
@@ -564,38 +568,38 @@ export default function ShadowOperativePage() {
                   <div className="space-y-4">
                     <FormField control={form.control} name="clearance1" render={({ field }) => (
                       <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                        <FormControl><input type="checkbox" checked={field.value === true} onChange={e => field.onChange(e.target.checked)} className="mt-1 w-4 h-4 accent-primary cursor-pointer flex-shrink-0" /></FormControl>
-                        <FormLabel className="text-xs leading-snug font-normal text-muted-foreground cursor-pointer">I understand that submitting my profile does not guarantee employment, a contract or future missions.</FormLabel>
+                        <FormControl><input id="clearance1" name="clearance1" type="checkbox" checked={field.value === true} onChange={e => field.onChange(e.target.checked)} className="mt-1 w-4 h-4 accent-primary cursor-pointer flex-shrink-0" /></FormControl>
+                        <FormLabel htmlFor="clearance1" className="text-xs leading-snug font-normal text-muted-foreground cursor-pointer">I understand that submitting my profile does not guarantee employment, a contract or future missions.</FormLabel>
                       </FormItem>
                     )} />
                     <FormField control={form.control} name="clearance2" render={({ field }) => (
                       <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                        <FormControl><input type="checkbox" checked={field.value === true} onChange={e => field.onChange(e.target.checked)} className="mt-1 w-4 h-4 accent-primary cursor-pointer flex-shrink-0" /></FormControl>
-                        <FormLabel className="text-xs leading-snug font-normal text-muted-foreground cursor-pointer">I understand that Shadow Operative assignments are offered on a mission-by-mission basis.</FormLabel>
+                        <FormControl><input id="clearance2" name="clearance2" type="checkbox" checked={field.value === true} onChange={e => field.onChange(e.target.checked)} className="mt-1 w-4 h-4 accent-primary cursor-pointer flex-shrink-0" /></FormControl>
+                        <FormLabel htmlFor="clearance2" className="text-xs leading-snug font-normal text-muted-foreground cursor-pointer">I understand that Shadow Operative assignments are offered on a mission-by-mission basis.</FormLabel>
                       </FormItem>
                     )} />
                     <FormField control={form.control} name="clearance3" render={({ field }) => (
                       <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                        <FormControl><input type="checkbox" checked={field.value === true} onChange={e => field.onChange(e.target.checked)} className="mt-1 w-4 h-4 accent-primary cursor-pointer flex-shrink-0" /></FormControl>
-                        <FormLabel className="text-xs leading-snug font-normal text-muted-foreground cursor-pointer">I understand that scope, compensation and responsibilities will be confirmed separately before I accept any mission.</FormLabel>
+                        <FormControl><input id="clearance3" name="clearance3" type="checkbox" checked={field.value === true} onChange={e => field.onChange(e.target.checked)} className="mt-1 w-4 h-4 accent-primary cursor-pointer flex-shrink-0" /></FormControl>
+                        <FormLabel htmlFor="clearance3" className="text-xs leading-snug font-normal text-muted-foreground cursor-pointer">I understand that scope, compensation and responsibilities will be confirmed separately before I accept any mission.</FormLabel>
                       </FormItem>
                     )} />
                     <FormField control={form.control} name="clearance4" render={({ field }) => (
                       <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                        <FormControl><input type="checkbox" checked={field.value === true} onChange={e => field.onChange(e.target.checked)} className="mt-1 w-4 h-4 accent-primary cursor-pointer flex-shrink-0" /></FormControl>
-                        <FormLabel className="text-xs leading-snug font-normal text-muted-foreground cursor-pointer">I understand and accept the Shared Portfolio Protocol, including that completed work may be showcased by both BASE8HQ and myself where permitted by the client and mission terms.</FormLabel>
+                        <FormControl><input id="clearance4" name="clearance4" type="checkbox" checked={field.value === true} onChange={e => field.onChange(e.target.checked)} className="mt-1 w-4 h-4 accent-primary cursor-pointer flex-shrink-0" /></FormControl>
+                        <FormLabel htmlFor="clearance4" className="text-xs leading-snug font-normal text-muted-foreground cursor-pointer">I understand and accept the Shared Portfolio Protocol, including that completed work may be showcased by both BASE8HQ and myself where permitted by the client and mission terms.</FormLabel>
                       </FormItem>
                     )} />
                     <FormField control={form.control} name="clearance5" render={({ field }) => (
                       <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                        <FormControl><input type="checkbox" checked={field.value === true} onChange={e => field.onChange(e.target.checked)} className="mt-1 w-4 h-4 accent-primary cursor-pointer flex-shrink-0" /></FormControl>
-                        <FormLabel className="text-xs leading-snug font-normal text-muted-foreground cursor-pointer">I understand that confidential or restricted work cannot be publicly shared without appropriate permission.</FormLabel>
+                        <FormControl><input id="clearance5" name="clearance5" type="checkbox" checked={field.value === true} onChange={e => field.onChange(e.target.checked)} className="mt-1 w-4 h-4 accent-primary cursor-pointer flex-shrink-0" /></FormControl>
+                        <FormLabel htmlFor="clearance5" className="text-xs leading-snug font-normal text-muted-foreground cursor-pointer">I understand that confidential or restricted work cannot be publicly shared without appropriate permission.</FormLabel>
                       </FormItem>
                     )} />
                     <FormField control={form.control} name="clearance6" render={({ field }) => (
                       <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                        <FormControl><input type="checkbox" checked={field.value === true} onChange={e => field.onChange(e.target.checked)} className="mt-1 w-4 h-4 accent-primary cursor-pointer flex-shrink-0" /></FormControl>
-                        <FormLabel className="text-xs leading-snug font-normal text-muted-foreground cursor-pointer">I confirm that the information and portfolio material submitted in this application accurately represents my own skills, experience and authorised work.</FormLabel>
+                        <FormControl><input id="clearance6" name="clearance6" type="checkbox" checked={field.value === true} onChange={e => field.onChange(e.target.checked)} className="mt-1 w-4 h-4 accent-primary cursor-pointer flex-shrink-0" /></FormControl>
+                        <FormLabel htmlFor="clearance6" className="text-xs leading-snug font-normal text-muted-foreground cursor-pointer">I confirm that the information and portfolio material submitted in this application accurately represents my own skills, experience and authorised work.</FormLabel>
                       </FormItem>
                     )} />
                   </div>

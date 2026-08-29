@@ -155,7 +155,7 @@ const DeployMissionPage = () => {
                       <FormItem>
                         <FormLabel className="font-heading text-[0.65rem] tracking-widest text-muted-foreground">Operative Name</FormLabel>
                         <FormControl>
-                          <Input {...field} className="w-full bg-background border border-primary/20 rounded-sm px-4 py-3 text-sm text-foreground focus:border-primary/60 focus:outline-none transition-colors" />
+                          <Input {...field} className="w-full bg-background border border-primary/20 rounded-sm px-4 py-3 text-sm text-foreground focus:border-primary/60 focus:outline-none transition-colors" autoComplete="name" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -168,7 +168,7 @@ const DeployMissionPage = () => {
                       <FormItem>
                         <FormLabel className="font-heading text-[0.65rem] tracking-widest text-muted-foreground">Company</FormLabel>
                         <FormControl>
-                          <Input {...field} className="w-full bg-background border border-primary/20 rounded-sm px-4 py-3 text-sm text-foreground focus:border-primary/60 focus:outline-none transition-colors" />
+                          <Input {...field} className="w-full bg-background border border-primary/20 rounded-sm px-4 py-3 text-sm text-foreground focus:border-primary/60 focus:outline-none transition-colors" autoComplete="organization" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -181,7 +181,7 @@ const DeployMissionPage = () => {
                       <FormItem>
                         <FormLabel className="font-heading text-[0.65rem] tracking-widest text-muted-foreground">Email</FormLabel>
                         <FormControl>
-                          <Input {...field} type="email" className="w-full bg-background border border-primary/20 rounded-sm px-4 py-3 text-sm text-foreground focus:border-primary/60 focus:outline-none transition-colors" />
+                          <Input {...field} type="email" className="w-full bg-background border border-primary/20 rounded-sm px-4 py-3 text-sm text-foreground focus:border-primary/60 focus:outline-none transition-colors" autoComplete="email" />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -199,6 +199,7 @@ const DeployMissionPage = () => {
                             type="tel"
                             placeholder="+1 (555) 123-4567"
                             className="w-full bg-background border border-primary/20 rounded-sm px-4 py-3 text-sm text-foreground focus:border-primary/60 focus:outline-none transition-colors"
+                            autoComplete="tel"
                           />
                         </FormControl>
                         <FormMessage />
