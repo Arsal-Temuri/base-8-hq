@@ -26,7 +26,7 @@ export default function HomeHero() {
                 <span className="text-primary text-glow-amber">ONE HQ.</span>
               </h1>
               <p className="font-sans text-[0.9rem] sm:text-base md:text-lg tracking-wide text-muted-foreground mb-10 max-w-xl leading-relaxed">
-                Eight operational units across brand, media, marketing and digital—coordinated from one independent creative headquarters.
+                Eight operational units across brand, media, marketing and IT—coordinated from one independent creative headquarters.
               </p>
             </motion.div>
             
