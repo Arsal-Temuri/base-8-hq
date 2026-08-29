@@ -166,7 +166,7 @@ export default function Home() {
       {/* STRIKE TEAM */}
       <section className="py-20 lg:py-28 section-veil">
         <div className="container mx-auto px-4">
-          <SectionHeader tag="Team" title="Our Team" subtitle="The people behind every successful mission." />
+          <SectionHeader tag="Operators" title="Strike Team" subtitle="The people behind every successful mission." />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {team.map((t, i) => (
               <TeamCard key={t.name} {...t} index={i} />

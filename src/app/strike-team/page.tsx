@@ -19,7 +19,7 @@ const StrikeTeamPage = () => (
   <PageWrapper>
     <section className="pt-32 pb-20 lg:pt-40 lg:pb-28">
       <div className="container mx-auto px-4">
-        <SectionHeader tag="Team" title="Our Team" subtitle="The people behind every mission." />
+        <SectionHeader tag="Operators" title="Strike Team" subtitle="The people behind every mission." />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-20">
           {team.map((t, i) => (
             <TeamCard key={t.name} {...t} index={i} />
