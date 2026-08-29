@@ -1,0 +1,267 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Slightly warm near-white — softer against the amber shader */
+    --background: 0 0% 2%;
+    --foreground: 36 18% 96%;
+    --card: 0 0% 4%;
+    --card-foreground: 36 18% 96%;
+    --popover: 0 0% 4%;
+    --popover-foreground: 36 18% 96%;
+    --primary: 39 91% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 6%;
+    --secondary-foreground: 36 18% 96%;
+    --muted: 0 0% 10%;
+    /* Warm grey muted text — harmonises with amber background */
+    --muted-foreground: 32 6% 62%;
+    --accent: 39 91% 55%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 39 91% 55% / 0.4;
+    --input: 39 91% 55% / 0.3;
+    --ring: 39 91% 55%;
+    --radius: 0.5rem;
+    --sidebar-background: 0 0% 4%;
+    --sidebar-foreground: 36 18% 96%;
+    --sidebar-primary: 39 91% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 10%;
+    --sidebar-accent-foreground: 36 18% 96%;
+    --sidebar-border: 39 91% 55% / 0.2;
+    --sidebar-ring: 39 91% 55%;
+
+    /* Custom tokens */
+    --glow-orange: 0 0 10px rgba(245, 166, 35, 0.4);
+    --glow-orange-hover: 0 0 25px rgba(245, 166, 35, 0.8);
+    --glow-orange-intense: 0 0 40px rgba(245, 166, 35, 0.6);
+    --border-glow: 1px solid rgba(245, 166, 35, 0.4);
+  }
+}
+
+@layer base {
+  html {
+    font-size: 108.333%;
+    /* Darkest palette color as fallback when WebGL is unavailable */
+    background-color: #140a00;
+  }
+
+  body {
+    /* Transparent so the fixed WebGL canvas shows through */
+    background: transparent;
+    @apply text-foreground;
+    /* Space Grotesk: geometric, premium; Inter as fallback */
+    font-family: var(--font-space), var(--font-inter), sans-serif;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+    line-height: 1.65;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-orbitron), sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    line-height: 1.15;
+  }
+}
+
+/* ─── Text-shadow readability tiers ──────────────────────────────────────────
+   The amber shader can produce bright blobs behind text. These shadows
+   provide a dark halo that keeps every text level crisp regardless of what
+   the shader is doing underneath.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* Hero display — fullscreen text directly above the shader */
+.text-shadow-hero {
+  text-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.3),
+    0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* Section headings */
+.text-shadow-heading {
+  text-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* Body / muted paragraphs */
+.text-shadow-body {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Amber accent text — adds warm glow + dark halo for legibility */
+.text-glow-amber {
+  text-shadow:
+    0 0 18px rgba(245, 166, 35, 0.55),
+    0 0 36px rgba(245, 166, 35, 0.25),
+    0 2px  8px rgba(0,   0,   0,  0.70);
+}
+
+/* ─── Section veil ───────────────────────────────────────────────────────────
+   A subtle dark overlay on full-bleed sections so the shader never competes
+   with body-copy readability. Applied via ::before so content stays above it.
+   ─────────────────────────────────────────────────────────────────────────── */
+.section-veil {
+  position: relative;
+  isolation: isolate;
+}
+.section-veil::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 4, 0, 0.00)  0%,
+    rgba(8, 4, 0, 0.42) 15%,
+    rgba(8, 4, 0, 0.42) 85%,
+    rgba(8, 4, 0, 0.00) 100%
+  );
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ─── Card glass ─────────────────────────────────────────────────────────────*/
+.card-glass {
+  background: rgba(8, 5, 0, 0.82);
+  -webkit-backdrop-filter: blur(16px) saturate(1.3);
+  backdrop-filter: blur(16px) saturate(1.3);
+  border: 1px solid rgba(245, 166, 35, 0.18);
+  box-shadow:
+    0 0 0 0.5px rgba(245, 166, 35, 0.08) inset,
+    0 8px 32px rgba(0, 0, 0, 0.55),
+    0 0 12px rgba(245, 166, 35, 0.08);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card-glass:hover {
+  border-color: rgba(245, 166, 35, 0.45);
+  box-shadow:
+    0 0 0 0.5px rgba(245, 166, 35, 0.15) inset,
+    0 12px 40px rgba(0, 0, 0, 0.65),
+    0 0 28px rgba(245, 166, 35, 0.22);
+  transform: translateY(-3px);
+}
+
+/* ─── Buttons ────────────────────────────────────────────────────────────────*/
+.btn-glow {
+  border: 1px solid rgba(245, 166, 35, 0.55);
+  color: #f5a623;
+  font-family: var(--font-orbitron), sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.8rem 1.75rem;
+  transition: background 0.3s ease, box-shadow 0.3s ease,
+              color 0.3s ease, transform 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  text-shadow: 0 0 12px rgba(245, 166, 35, 0.35);
+}
+
+.btn-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(245, 166, 35, 0.06);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-glow:hover {
+  background: rgba(245, 166, 35, 0.12);
+  box-shadow: 0 0 28px rgba(245, 166, 35, 0.45),
+              0 0  6px rgba(245, 166, 35, 0.20) inset;
+  color: #fff;
+  transform: translateY(-1px);
+}
+.btn-glow:hover::before { opacity: 1; }
+
+.btn-glow-filled {
+  background: linear-gradient(135deg, #f5a623 0%, #c07d15 100%);
+  border: 1px solid rgba(245, 166, 35, 0.70);
+  color: #0a0500;
+  font-family: var(--font-orbitron), sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.8rem 1.75rem;
+  transition: box-shadow 0.3s ease, transform 0.2s ease, filter 0.3s ease;
+}
+
+.btn-glow-filled:hover {
+  box-shadow: 0 0 32px rgba(245, 166, 35, 0.60),
+              0 4px 16px rgba(0, 0, 0, 0.40);
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+}
+
+/* ─── Scanning line — disabled ───────────────────────────────────────────────*/
+.scan-line {
+  display: none;
+}
+
+/* ─── Glow separator ─────────────────────────────────────────────────────────*/
+.glow-separator {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(245, 166, 35, 0.40),
+    transparent
+  );
+  border: none;
+}
+
+/* ─── Pulse glow ─────────────────────────────────────────────────────────────*/
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 10px rgba(245, 166, 35, 0.3); }
+  50%       { box-shadow: 0 0 25px rgba(245, 166, 35, 0.6); }
+}
+.glow-pulse {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+/* ─── Infinite project slider ─────────────────────────────────────────────── */
+@keyframes slide-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes slide-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+.slider-left {
+  animation: slide-left 32s linear infinite;
+}
+.slider-right {
+  animation: slide-right 38s linear infinite;
+}
+.slider-left:hover,
+.slider-right:hover {
+  animation-play-state: paused;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────────*/
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #0a0500; }
+::-webkit-scrollbar-thumb {
+  background: rgba(245, 166, 35, 0.28);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(245, 166, 35, 0.50); }
+
+/* ─── Command Center Grid ────────────────────────────────────────────────────*/
+@layer utilities {
+  .bg-command-grid {
+    background-size: 60px 60px;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-position: center top;
+  }
+}
