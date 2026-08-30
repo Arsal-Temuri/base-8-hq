@@ -13,11 +13,14 @@ const nextConfig: NextConfig = {
       },
     ],
     // Enable experimental image optimization (Next 13+)
-    formats: ['image/webp'],
+    formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 60,
   },
   // Custom security headers via async headers function
   async headers() {
+    const isDev = process.env.NODE_ENV !== 'production';
+    const csp = `default-src 'self'; script-src 'self' 'unsafe-inline' ${isDev ? "'unsafe-eval' " : ""}https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' https:; connect-src 'self' https:;`;
+    
     return [
       {
         source: '/(.*)',
@@ -26,7 +29,7 @@ const nextConfig: NextConfig = {
           { key: 'X-Frame-Options', value: 'DENY' },
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           { key: 'Permissions-Policy', value: 'geolocation=(), camera=()' },
-          { key: 'Content-Security-Policy', value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' https:; connect-src 'self' https:;" },
+          { key: 'Content-Security-Policy', value: csp },
         ],
       },
     ];

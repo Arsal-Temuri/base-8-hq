@@ -32,6 +32,9 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://base8hq.com"),
+  alternates: {
+    canonical: '/',
+  },
   title: {
     template: "%s | BASE8HQ",
     default: "BASE8 Headquarters | Creative & Marketing Agency",
