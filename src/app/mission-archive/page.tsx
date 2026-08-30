@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import PageWrapper from "@/components/PageWrapper";
 import CTASection from "@/components/CTASection";
@@ -66,7 +65,7 @@ function PremiumProjectCard({ project, index }: { project: typeof projects[0], i
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       className="group relative"
     >
-      <Link href={`/mission-archive/${project.slug}`} className="block w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-sm">
+      <div className="block w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded-sm">
         {/* Image Container */}
         <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm border border-primary/10 bg-black/40">
           <Image
@@ -108,7 +107,7 @@ function PremiumProjectCard({ project, index }: { project: typeof projects[0], i
             {num}
           </span>
         </div>
-      </Link>
+      </div>
     </motion.div>
   );
 }
