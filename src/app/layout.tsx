@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     siteName: "BASE8HQ",
     images: [
       {
-        url: "/assets/hq-office.jpg",
+        url: "/assets/HeadQuarter%20Room.png",
         width: 1200,
         height: 630,
         alt: "BASE8HQ Command Center",
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "BASE8 Headquarters",
     description: "A high-performance creative command center built for brands that refuse to blend in.",
-    images: ["/assets/hq-office.jpg"],
+    images: ["/assets/HeadQuarter%20Room.png"],
   },
 };
 

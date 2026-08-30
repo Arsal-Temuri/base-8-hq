@@ -6,7 +6,7 @@ import PageWrapper from "@/components/PageWrapper";
 import SectionHeader from "@/components/SectionHeader";
 import CTASection from "@/components/CTASection";
 
-const hqOffice = "/assets/hq-office.jpg";
+const hqOffice = "/assets/HeadQuarter%20Room.png";
 
 const fadeIn = {
   initial: { opacity: 0, y: 30 },
@@ -37,8 +37,8 @@ const HeadquartersPage = () => (
               The headquarters operates through a structured system where each operator contributes specialized expertise. This approach allows BASE8HQ to remain efficient, adaptable, and results-oriented.
             </p>
           </motion.div>
-          <motion.div {...fadeIn} className="card-glass rounded-sm overflow-hidden relative h-[300px] md:h-full">
-            <Image src={hqOffice} alt="Headquarters" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+          <motion.div {...fadeIn} className="card-glass rounded-sm overflow-hidden w-full">
+            <img src={hqOffice} alt="Headquarters" className="w-full h-auto block" />
           </motion.div>
         </div>
 

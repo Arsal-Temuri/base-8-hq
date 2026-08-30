@@ -14,7 +14,7 @@ import TeamCard from "@/components/TeamCard";
 import CTASection from "@/components/CTASection";
 import HomeHero from "@/components/HomeHero";
 
-const hqOffice = "/assets/hq-office.jpg";
+const hqOffice = "/assets/HeadQuarter%20Room.png";
 const projectCement = "/assets/project-cement.jpg";
 const projectCoffee = "/assets/project-coffee.jpg";
 const projectFitness = "/assets/project-fitness.jpg";
@@ -123,9 +123,9 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="card-glass rounded-sm overflow-hidden relative h-[400px] md:h-full"
+              className="card-glass rounded-sm overflow-hidden w-full"
             >
-              <Image src={hqOffice} alt="BASE8HQ Command Center" fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
+              <img src={hqOffice} alt="BASE8HQ Command Center" className="w-full h-auto block" />
             </motion.div>
           </div>
         </div>

@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="container mx-auto px-4 lg:px-8 py-12 lg:py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* Nav */}
-          <div>
+          <div className="flex flex-col items-start text-left">
             <h4 className="font-heading text-[0.62rem] tracking-[0.32em] text-primary mb-5 text-glow-amber">
               Quick Navigation
             </h4>
@@ -32,11 +32,11 @@ const Footer = () => {
           </div>
 
           {/* Contact */}
-          <div>
+          <div className="flex flex-col items-start md:items-center text-left md:text-center">
             <h4 className="font-heading text-[0.62rem] tracking-[0.32em] text-primary mb-5 text-glow-amber">
               Contact Intel
             </h4>
-            <div className="flex flex-col gap-2.5 text-[0.85rem] text-muted-foreground">
+            <div className="flex flex-col gap-2.5 text-[0.85rem] text-muted-foreground md:items-center">
               <a
                 href="mailto:base8headquarters@gmail.com"
                 className="hover:text-primary transition-colors duration-200 tracking-wide"
@@ -53,25 +53,34 @@ const Footer = () => {
           </div>
 
           {/* Social */}
-          <div>
-            <h4 className="font-heading text-[0.62rem] tracking-[0.32em] text-primary mb-5 text-glow-amber">
-              Social Channels
-            </h4>
-            <div className="flex gap-3">
-              {[
-                { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/base8hq/" },
-                { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/base8hq" },
-                { icon: MessageCircleMore, label: "WhatsApp", href: "https://wa.me/923396006135" },
-              ].map(({ icon: Icon, label, href }) => (
-                <a
-                  key={label}
-                  href={href}
-                  aria-label={label}
-                  className="w-10 h-10 flex items-center justify-center border border-primary/25 rounded-sm text-muted-foreground hover:text-primary hover:border-primary/55 hover:bg-primary/8 transition-all duration-300"
-                >
-                  <Icon size={15} strokeWidth={1.5} />
-                </a>
-              ))}
+          <div className="flex flex-col items-start md:items-end">
+            <div className="flex flex-col items-start text-left">
+              <h4 className="font-heading text-[0.62rem] tracking-[0.32em] text-primary mb-5 text-glow-amber">
+                Social Channels
+              </h4>
+              <div className="flex gap-3">
+                {[
+                  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/base8hq/" },
+                  { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/base8hq" },
+                  { icon: MessageCircleMore, label: "WhatsApp", href: "https://wa.me/923396006135" },
+                ].map(({ icon: Icon, label, href }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    aria-label={label}
+                    className="w-10 h-10 flex items-center justify-center border border-primary/25 rounded-sm text-muted-foreground hover:text-primary hover:border-primary/55 hover:bg-primary/8 transition-all duration-300"
+                  >
+                    <Icon size={15} strokeWidth={1.5} />
+                  </a>
+                ))}
+              </div>
+              <div className="mt-10">
+                <img 
+                  src="/B8%20Logo%20Long.png" 
+                  alt="BASE8HQ" 
+                  className="w-44 opacity-80 hover:opacity-100 hover:drop-shadow-[0_0_15px_rgba(245,166,35,0.4)] transition-all duration-300 block" 
+                />
+              </div>
             </div>
           </div>
         </div>

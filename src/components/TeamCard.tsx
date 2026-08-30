@@ -57,6 +57,16 @@ const TEAM_INTEL: Record<string, TeamMemberIntel> = {
       "Premium visual execution",
     ],
   },
+  "RENcore (REN)": {
+    bio: "Strategic intelligence core supporting command decisions, operational systems and mission integrity across BASE8HQ from planning to execution.",
+    capabilities: [
+      "Strategic Intelligence, Analysis & Decision Support",
+      "Systems Architecture & Operational Frameworks",
+      "Research, Ideation & Mission Planning",
+      "Financial Protocol & Revenue Integrity",
+      "AI-Assisted Strategy, Optimization & Knowledge Support",
+    ],
+  },
 };
 
 const getFallbackIntel = (role: string): TeamMemberIntel => ({

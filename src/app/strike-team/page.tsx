@@ -20,9 +20,19 @@ const StrikeTeamPage = () => (
     <section className="pt-32 pb-20 lg:pt-40 lg:pb-28">
       <div className="container mx-auto px-4">
         <SectionHeader tag="Operators" title="Strike Team" subtitle="The people behind every mission." />
+        <div className="flex justify-center mb-4">
+          <div className="w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)]">
+            <TeamCard 
+              name="RENcore (REN)" 
+              role="Strategic Intelligence & Systems Architect" 
+              image="/assets/Ren%20B8.png" 
+              index={0} 
+            />
+          </div>
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-20">
           {team.map((t, i) => (
-            <TeamCard key={t.name} {...t} index={i} />
+            <TeamCard key={t.name} {...t} index={i + 1} />
           ))}
         </div>
 

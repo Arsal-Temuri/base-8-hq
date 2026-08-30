@@ -21,7 +21,7 @@ export default function HomeHero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             >
-              <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-[5.5rem] font-semibold mb-6 leading-[1.05] tracking-[0.05em]">
+              <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-[5rem] font-semibold mb-6 leading-[1.05] tracking-tight">
                 <span className="whitespace-nowrap">EVERY MOVE.</span> <br className="hidden md:block" />
                 <span className="text-primary text-glow-amber whitespace-nowrap">ONE HQ.</span>
               </h1>
