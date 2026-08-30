@@ -67,6 +67,12 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -77,7 +83,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${orbitron.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
-      <body className="min-h-full">
+      <body className="min-h-full overflow-x-hidden">
         <AnimatedShaderBackground />
         <Providers>
           <div className="min-h-full flex flex-col">

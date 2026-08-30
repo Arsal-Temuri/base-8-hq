@@ -6,22 +6,22 @@ import Image from "next/image";
 
 export default function HomeHero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-command-grid pt-28 pb-12 lg:pt-0 lg:pb-0">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-command-grid pt-28 pb-12 xl:pt-0 xl:pb-0">
       {/* Veil to darken edges of the grid slightly, drawing focus to center */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black/90 pointer-events-none" />
       <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/80 pointer-events-none" />
       
       <div className="relative container mx-auto px-4 z-10">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-8 items-center min-h-[80vh]">
+        <div className="grid xl:grid-cols-2 gap-16 xl:gap-8 items-center min-h-[80vh]">
           
           {/* LEFT: Hero Content */}
-          <div className="text-center lg:text-left flex flex-col items-center lg:items-start order-1">
+          <div className="text-center xl:text-left flex flex-col items-center xl:items-start order-1">
             <motion.div
               initial={{ opacity: 0, y: 44 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             >
-              <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-[5rem] font-semibold mb-6 leading-[1.05] tracking-tight">
+              <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl xl:text-[5rem] font-semibold mb-6 leading-[1.05] tracking-tight">
                 <span className="whitespace-nowrap">EVERY MOVE.</span> <br className="hidden md:block" />
                 <span className="text-primary text-glow-amber whitespace-nowrap">ONE HQ.</span>
               </h1>
@@ -46,16 +46,16 @@ export default function HomeHero() {
           </div>
 
           {/* RIGHT: Hero Core System */}
-          <div className="relative flex justify-center items-center order-2 h-[350px] sm:h-[400px] lg:h-[600px] w-full">
+          <div className="relative flex justify-center items-center order-2 h-[350px] sm:h-[400px] xl:h-[600px] w-full">
             <motion.div 
               initial={{ opacity: 0, scale: 0.85 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="relative w-[260px] h-[260px] sm:w-[400px] sm:h-[400px] lg:w-[500px] lg:h-[500px] flex items-center justify-center"
+              className="relative w-[260px] h-[260px] sm:w-[400px] sm:h-[400px] xl:w-[500px] xl:h-[500px] flex items-center justify-center"
             >
               
               {/* Core SVG Logo */}
-              <div className="relative z-20 w-[120px] sm:w-[150px] lg:w-[220px] aspect-square flex items-center justify-center drop-shadow-[0_0_25px_rgba(245,179,1,0.25)]">
+              <div className="relative z-20 w-[120px] sm:w-[150px] xl:w-[220px] aspect-square flex items-center justify-center drop-shadow-[0_0_25px_rgba(245,179,1,0.25)]">
                 <Image src="/base8hq-emblem.svg" alt="BASE8 Headquarters Core" fill className="object-contain" priority />
               </div>
               
@@ -118,9 +118,9 @@ export default function HomeHero() {
         </div>
       </div>
       
-      {/* Bottom capability ticker (Desktop only, enhances the command center feel) */}
-      <div className="absolute bottom-0 left-0 w-full border-t border-primary/10 bg-black/40 backdrop-blur-md hidden md:flex justify-between items-center px-8 py-3 font-heading text-[0.5rem] tracking-[0.3em] uppercase text-muted-foreground z-20">
-         <div className="flex gap-8 items-center">
+      {/* Bottom capability ticker (Desktop/Tablet) */}
+      <div className="absolute bottom-0 left-0 w-full border-t border-primary/10 bg-black/40 backdrop-blur-md hidden md:flex justify-center xl:justify-between items-center px-4 xl:px-8 py-3 font-heading text-[0.45rem] xl:text-[0.5rem] tracking-[0.2em] xl:tracking-[0.3em] uppercase text-muted-foreground z-20">
+         <div className="flex gap-4 xl:gap-8 items-center flex-wrap justify-center">
             <span className="text-primary font-semibold text-glow-amber">Capabilities //</span>
             <span className="flex items-center gap-2"><span className="w-1 h-1 rounded-full bg-primary" /> Strategy</span>
             <span className="flex items-center gap-2"><span className="w-1 h-1 rounded-full bg-primary" /> Identity</span>
@@ -128,7 +128,7 @@ export default function HomeHero() {
             <span className="flex items-center gap-2"><span className="w-1 h-1 rounded-full bg-primary" /> Technology</span>
             <span className="flex items-center gap-2"><span className="w-1 h-1 rounded-full bg-primary" /> Growth</span>
          </div>
-         <div className="flex gap-4">
+         <div className="hidden xl:flex gap-4">
            <span className="flex items-center gap-2 opacity-50"><span className="text-primary font-mono">01</span> Emblem Core</span>
            <span className="flex items-center gap-2 opacity-50"><span className="text-primary font-mono">02</span> Signal Grid</span>
            <span className="flex items-center gap-2 opacity-50"><span className="text-primary font-mono">03</span> Black Vault</span>

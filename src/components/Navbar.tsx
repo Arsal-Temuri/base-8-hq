@@ -76,12 +76,12 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden lg:flex items-center gap-6">
+        <div className="hidden xl:flex items-center gap-4 2xl:gap-6">
           {navLinks.map((link) => (
             <Link
               key={link.path}
               href={link.path}
-              className={`font-heading text-[0.65rem] tracking-widest uppercase transition-colors duration-200 ${
+              className={`font-heading text-[0.65rem] tracking-widest uppercase whitespace-nowrap transition-colors duration-200 ${
                 pathname === link.path
                   ? "text-primary"
                   : "text-muted-foreground hover:text-foreground"
@@ -96,13 +96,13 @@ const Navbar = () => {
         <div className="flex items-center gap-4">
           <Link
             href="/deploy-mission"
-            className="hidden md:inline-block btn-glow rounded-sm"
+            className="hidden md:inline-block whitespace-nowrap btn-glow rounded-sm"
           >
             Deploy a Mission
           </Link>
           <button
             ref={mobileToggleRef}
-            className="lg:hidden text-foreground"
+            className="xl:hidden text-foreground"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-controls="mobile-navigation"
             aria-expanded="false"
@@ -121,7 +121,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-background/95 backdrop-blur-xl border-b border-primary/20 overflow-hidden"
+            className="xl:hidden bg-background/95 backdrop-blur-xl border-b border-primary/20 overflow-hidden"
           >
             <div className="container mx-auto px-4 py-6 flex flex-col gap-4">
               {navLinks.map((link) => (

@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import PageWrapper from "@/components/PageWrapper";
-import SectionHeader from "@/components/SectionHeader";
+
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -111,10 +111,17 @@ export default function ShadowOperativePage() {
     },
   });
 
-  const watchClearance = form.watch([
-    "clearance1", "clearance2", "clearance3", 
-    "clearance4", "clearance5", "clearance6"
-  ]);
+  const watchClearance = useWatch({
+    control: form.control,
+    name: [
+      "clearance1",
+      "clearance2",
+      "clearance3",
+      "clearance4",
+      "clearance5",
+      "clearance6",
+    ],
+  });
   
   const allClearanceChecked = watchClearance.every(Boolean);
 

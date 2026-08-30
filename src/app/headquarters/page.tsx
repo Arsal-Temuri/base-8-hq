@@ -38,7 +38,14 @@ const HeadquartersPage = () => (
             </p>
           </motion.div>
           <motion.div {...fadeIn} className="card-glass rounded-sm overflow-hidden w-full">
-            <img src={hqOffice} alt="Headquarters" className="w-full h-auto block" />
+                <Image
+                  src={hqOffice}
+                  alt="Headquarters"
+                  className="w-full h-auto block"
+                  loading="lazy"
+                  width={1200}
+                  height={800}
+                />
           </motion.div>
         </div>
 

@@ -125,7 +125,14 @@ export default function Home() {
               transition={{ duration: 0.6 }}
               className="card-glass rounded-sm overflow-hidden w-full"
             >
-              <img src={hqOffice} alt="BASE8HQ Command Center" className="w-full h-auto block" />
+              <Image
+                src={hqOffice}
+                alt="BASE8HQ Command Center"
+                className="w-full h-auto block"
+                loading="lazy"
+                width={1200}
+                height={800}
+              />
             </motion.div>
           </div>
         </div>
@@ -167,9 +174,19 @@ export default function Home() {
       <section className="py-20 lg:py-28 section-veil">
         <div className="container mx-auto px-4">
           <SectionHeader tag="Operators" title="Strike Team" subtitle="The people behind every successful mission." />
+          <div className="flex justify-center mb-4">
+            <div className="w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)]">
+              <TeamCard 
+                name="RENcore (REN)" 
+                role="Strategic Intelligence & Systems Architect" 
+                image="/assets/Ren%20B8.png" 
+                index={0} 
+              />
+            </div>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {team.map((t, i) => (
-              <TeamCard key={t.name} {...t} index={i} />
+              <TeamCard key={t.name} {...t} index={i + 1} />
             ))}
           </div>
           <div className="text-center mt-10">

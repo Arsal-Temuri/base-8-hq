@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Linkedin, Instagram, MessageCircleMore } from "lucide-react";
 
 const Footer = () => {
@@ -75,10 +76,13 @@ const Footer = () => {
                 ))}
               </div>
               <div className="mt-10">
-                <img 
-                  src="/B8%20Logo%20Long.png" 
-                  alt="BASE8HQ" 
-                  className="w-44 opacity-80 hover:opacity-100 hover:drop-shadow-[0_0_15px_rgba(245,166,35,0.4)] transition-all duration-300 block" 
+                <Image
+                  src="/B8 Logo Long.png"
+                  alt="BASE8HQ"
+                  className="w-44 opacity-80 hover:opacity-100 hover:drop-shadow-[0_0_15px_rgba(245,166,35,0.4)] transition-all duration-300 block"
+                  loading="lazy"
+                  width={200}
+                  height={80}
                 />
               </div>
             </div>
