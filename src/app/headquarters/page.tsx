@@ -25,7 +25,7 @@ const HeadquartersPage = () => (
   <PageWrapper>
     <section className="pt-32 pb-20 lg:pt-40 lg:pb-28">
       <div className="container mx-auto px-4">
-        <SectionHeader tag="HQ" title="Headquarters" subtitle="The command center behind every successful brand operation." />
+        <SectionHeader isMainHeader={true} tag="HQ" title="Headquarters" subtitle="The command center behind every successful brand operation." />
 
         <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
           <motion.div {...fadeIn}>
@@ -37,14 +37,16 @@ const HeadquartersPage = () => (
               The headquarters operates through a structured system where each operator contributes specialized expertise. This approach allows BASE8HQ to remain efficient, adaptable, and results-oriented.
             </p>
           </motion.div>
-          <motion.div {...fadeIn} className="card-glass rounded-sm overflow-hidden w-full">
+          <motion.div {...fadeIn} className="card-glass rounded-sm overflow-hidden w-full relative aspect-[3/2]">
                 <Image
                   src={hqOffice}
-                  alt="Headquarters"
+                  alt="BASE8HQ Command Center"
                   className="w-full h-auto block"
-                  loading="lazy"
-                  width={1200}
-                  height={800}
+                  loading="eager"
+                  priority
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
           </motion.div>
         </div>

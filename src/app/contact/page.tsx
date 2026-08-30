@@ -74,7 +74,7 @@ const ContactPage = () => {
     <PageWrapper>
       <section className="pt-32 pb-20 lg:pt-40 lg:pb-28">
         <div className="container mx-auto px-4">
-          <SectionHeader tag="Contact" title="Contact Point" subtitle="Establish a secure communication channel with BASE8HQ." />
+          <SectionHeader isMainHeader={true} tag="Contact" title="Contact Point" subtitle="Establish a secure communication channel with BASE8HQ." />
 
           <div className="grid md:grid-cols-2 gap-10 max-w-4xl mx-auto">
             {/* Contact Info */}

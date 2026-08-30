@@ -122,6 +122,7 @@ const DeployMissionPage = () => {
       <section className="pt-32 pb-20 lg:pt-40 lg:pb-28">
         <div className="container mx-auto px-4 max-w-2xl">
           <SectionHeader
+            isMainHeader={true}
             tag="Deploy"
             title="Deploy a Mission"
             subtitle="Brief us on your operation. We'll assemble the right team and strategy."

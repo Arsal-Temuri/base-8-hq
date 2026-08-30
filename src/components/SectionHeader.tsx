@@ -6,9 +6,13 @@ interface SectionHeaderProps {
   tag?: string;
   title: string;
   subtitle?: string;
+  isMainHeader?: boolean;
 }
 
-const SectionHeader = ({ tag, title, subtitle }: SectionHeaderProps) => (
+const SectionHeader = ({ tag, title, subtitle, isMainHeader = false }: SectionHeaderProps) => {
+  const TitleTag = isMainHeader ? "h1" : "h2";
+  
+  return (
   <motion.div
     initial={{ opacity: 0, y: 28 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -21,15 +25,16 @@ const SectionHeader = ({ tag, title, subtitle }: SectionHeaderProps) => (
         {tag}
       </span>
     )}
-    <h2 className="font-heading text-2xl md:text-3xl lg:text-4xl font-semibold text-foreground mb-4 tracking-[0.07em] text-shadow-heading">
+    <TitleTag className="font-heading text-2xl md:text-3xl lg:text-4xl font-semibold text-foreground mb-4 tracking-[0.07em] text-shadow-heading">
       {title}
-    </h2>
+    </TitleTag>
     {subtitle && (
       <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base leading-relaxed tracking-wide text-shadow-body">
         {subtitle}
       </p>
     )}
   </motion.div>
-);
+  );
+};
 
 export default SectionHeader;

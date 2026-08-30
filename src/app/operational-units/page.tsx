@@ -103,6 +103,7 @@ const OperationalUnitsPage = () => (
     <section className="pt-32 pb-20 lg:pt-40 lg:pb-28">
       <div className="container mx-auto px-4">
         <SectionHeader
+          isMainHeader={true}
           tag="Operations"
           title="Operational Units"
           subtitle="Eight specialized divisions with clearly defined service capabilities."

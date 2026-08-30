@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/headquarters",
     "/mission-archive",
     "/operational-units",
+    "/shadow-operative",
     "/strike-team",
   ];
 

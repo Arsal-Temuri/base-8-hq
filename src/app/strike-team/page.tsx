@@ -19,7 +19,7 @@ const StrikeTeamPage = () => (
   <PageWrapper>
     <section className="pt-32 pb-20 lg:pt-40 lg:pb-28">
       <div className="container mx-auto px-4">
-        <SectionHeader tag="Operators" title="Strike Team" subtitle="The people behind every mission." />
+        <SectionHeader isMainHeader={true} tag="Operators" title="Strike Team" subtitle="The people behind every mission." />
         <div className="flex justify-center mb-4">
           <div className="w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)]">
             <TeamCard 
